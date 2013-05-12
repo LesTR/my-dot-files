@@ -74,7 +74,13 @@ function prompt_right() {
 	echo -e "\033[0;37m\$(parse_git_ci)\033[0m"
 }
 function prompt_left() {
-	echo -e "\e[01;32m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;37m\]\xe2\x88\x91\e[0;37m\]"
+	 if [ "${TERM}" == "screen" ]; then
+			PR_COLOR=33
+	 else
+			PR_COLOR=37
+	 fi
+
+	echo -e "\e[01;32m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
 }
 function prompt() {
 	P=263
