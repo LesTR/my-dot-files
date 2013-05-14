@@ -62,9 +62,9 @@ function parse_git_ci {
 		GIT_STATUS=`git status 2> /dev/null | tail -n1`
 		BRANCH=$(parse_git_branch)
 		if [[ "$GIT_STATUS" =~ ^nothing.* ]]; then
-			echo -ne "\e[1;37m[ \e[1;32m${BRANCH}\e[1;37m ]"
+			echo -ne " \e[1;37m[ \e[1;32m${BRANCH}\e[1;37m ]"
 		else 
-			echo -ne "\e[1;37m[ \e[1;31m${BRANCH}\e[1;37m ]"
+			echo -ne " \e[1;37m[ \e[1;31m${BRANCH}\e[1;37m ]"
 		fi
 	fi
 }
@@ -80,9 +80,20 @@ function prompt_left() {
 	 else
 			PR_COLOR=31
 	 fi
+	 if [ "$UID" -eq 0 ]; then
+			U_COLOR=31
+			H_COLOR=37
+			PR="<|>"
+	 else
+			U_COLOR=32
+			H_COLOR=32
+			PR="\xe2\x88\x91"
+	 fi
+	
 
 	#echo -e "\e[1;34m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
-	echo -e "\e[01;32m\]\u\e[1;32m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\] $(prompt_right) \[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]\e[00m\]"
+	echo -e "\e[01;${U_COLOR}m\]\u\e[1;${H_COLOR}m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]$(prompt_right) \[\e[1;${PR_COLOR}m\]${PR}\e[0;37m\]\e[00m\]"
+	#echo -e "\e[01;${U_COLOR}m\]\u\e[1;32m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]$(prompt_right) \[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]\e[00m\]"
 }
 function prompt() {
 	P=263
