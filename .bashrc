@@ -71,22 +71,25 @@ function parse_git_ci {
 
 
 function prompt_right() {
-	echo -e "\033[0;37m\$(parse_git_ci)\033[0m"
+	#echo -e "\033[0;37m\$(parse_git_ci)\033[0m"
+	echo -e "\e[0;37m\$(parse_git_ci)\e[0m"
 }
 function prompt_left() {
 	 if [ "${TERM}" == "screen" ]; then
 			PR_COLOR=33
 	 else
-			PR_COLOR=37
+			PR_COLOR=31
 	 fi
 
-	echo -e "\e[01;32m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
+	#echo -e "\e[1;34m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
+	echo -e "\e[01;32m\]\u\e[1;32m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\] $(prompt_right) \[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]\e[00m\]"
 }
 function prompt() {
 	P=263
-	#PS1=$(printf "%*s\r%s " "${P}" "$(prompt_right)" "$(prompt_left)")
+	PS1=$(printf "%s " "$(prompt_left)")
+	# "$(prompt_right)")
 	compensate=-12
-	PS1=$(printf "%*s\r%s " "$(($(tput cols)+${compensate}))" "$(prompt_right)" "$(prompt_left)")
+	#PS1=$(printf "%*s\r%s " "$(($(tput cols)+${compensate}))" "$(prompt_right)" "$(prompt_left)")
 	#PS1=$(printf "%s%s " "$(prompt_right)" "$(prompt_left)")
 }
 

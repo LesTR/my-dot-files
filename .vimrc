@@ -10,7 +10,7 @@ set showmatch
 set hlsearch
 set smartindent
 set shiftwidth=3
-set smarttab
+"set smarttab
 set noexpandtab
 set tabstop=2
 "set mouse=a
