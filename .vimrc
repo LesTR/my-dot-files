@@ -12,7 +12,7 @@ set smartindent
 set shiftwidth=3
 "set smarttab
 set noexpandtab
-set tabstop=2
+set tabstop=3
 "set mouse=a
 set wildmenu
 set hls

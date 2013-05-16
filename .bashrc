@@ -61,6 +61,9 @@ function parse_git_ci {
 	if git rev-parse --git-dir &> /dev/null; then
 		GIT_STATUS=`git status 2> /dev/null | tail -n1`
 		BRANCH=$(parse_git_branch)
+		if [ -z "$BRANCH" ]; then
+			 BRANCH="(no branch)"
+		fi
 		if [[ "$GIT_STATUS" =~ ^nothing.* ]]; then
 			echo -ne " \e[1;37m[ \e[1;32m${BRANCH}\e[1;37m ]"
 		else 
