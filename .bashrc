@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/games:/usr/games:$HOME/bin
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -52,12 +54,14 @@ fi
 
 parse_git_branch() { 
 	#echo -ne "[" && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/B:\1/'|tr -d "\n" && echo -ne "]"
-	if $(which git &> /dev/null); then
+	_pwd=`pwd`
+	if $(which git &> /dev/null) && test -d "$_pwd/.git" ; then
 		git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/' | tr -d " "
 	fi
 }
 function parse_git_ci {
 	if ! $(which git &> /dev/null); then return; fi
+	if ! test -d "`pwd`/.git"; then return; fi
 	if git rev-parse --git-dir &> /dev/null; then
 		GIT_STATUS=`git status 2> /dev/null | tail -n1`
 		BRANCH=$(parse_git_branch)
@@ -110,8 +114,8 @@ function prompt() {
 PROMPT_COMMAND=prompt
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;00m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;00m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[00m\][\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;00m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;00m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[00m\]\[\033[01;31m\]$(parse_git_ci)\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -133,7 +137,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    #alias grep='grep --color=auto'
+    alias grep='grep --color=auto'
     #alias fgrep='fgrep --color=auto'
     #alias egrep='egrep --color=auto'
 fi
@@ -160,6 +164,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+if [ -f ~/.bash_autocomplete ]; then
+    . ~/.bash_autocomplete
+fi
+
 export EDITOR=vim
 export DEBFULLNAME='Lukas Drbal'
 export DEBEMAIL='lukas.drbal@socialbakers.com'
@@ -170,3 +178,21 @@ genpasswd() {
 	  [ "$l" == "" ] && l=20
 	   tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
+
+tmp () {
+	cd `_mktmp`
+}
+
+tmpclone () {
+	cd `_mktmp`
+	git clone $1
+	cd `ls`
+}
+
+if [[ -d $HOME/.rvm ]]; then
+	PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+fi
+
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+
+export HERA_VERSION_PREFIX=lestr
