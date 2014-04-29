@@ -195,4 +195,23 @@ fi
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 
+httpshare () {
+	python -m SimpleHTTPServer 8000
+}
+
+EDITOR="vim"
+SUDO_EDITOR=$EDITOR
+#if $(which vimpager &> /dev/null) 
+#then 
+#	export PAGER="vimpager -c 'ft=man nomod nolist'"
+#else
+#	export PAGER="less"
+#fi
+#if $(which vimmanpager &> /dev/null) 
+#then 
+#	export MANPAGER="vimmanpager"
+#else
+#	export MANPAGER="col -b | vimpager -c 'set ft=man nomod nolist'"
+#fi
+
 export HERA_VERSION_PREFIX=lestr
