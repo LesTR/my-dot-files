@@ -199,6 +199,11 @@ httpshare () {
 	python -m SimpleHTTPServer 8000
 }
 
+
+if $(which xsel &> /dev/null); then
+	alias pbcopy='xsel -b'
+fi;
+
 EDITOR="vim"
 SUDO_EDITOR=$EDITOR
 #if $(which vimpager &> /dev/null) 
@@ -215,3 +220,8 @@ SUDO_EDITOR=$EDITOR
 #fi
 
 export HERA_VERSION_PREFIX=lestr
+
+#source fucking google API keys for chromium
+if [ -f ~/.chromium.env ]; then
+	. ~/.chromium.env
+fi

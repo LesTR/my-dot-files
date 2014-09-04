@@ -6,14 +6,16 @@
 	cl = log --graph --pretty=format:'%h%d %s (%an)'
 	ci = commit
 	st = status
+	s  = status -sb
 	br = branch
 	co = checkout
 	cp = cherry-pick
 	df = diff
-	lg = log --graph --pretty=format:'%Cred%h%Creset %C(yellow)%an%d%Creset %s %Cgreen(%cr)%Creset' --date=relative
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --date=relative
 	ll = log --first-parent --pretty=format:'%h %s'
 	lo = log --oneline
 	authors = log --pretty=format:'%an <%ae>'
+	browse = instaweb -d webrick -p 8888
 	# Typos ...
 	dif = diff
 	di = diff
@@ -45,3 +47,5 @@
   tool = vimdiff
 [push]
   default = current
+[help]
+	autocorrect = 1
