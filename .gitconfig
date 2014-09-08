@@ -6,7 +6,9 @@
 	cl = log --graph --pretty=format:'%h%d %s (%an)'
 	ci = commit
 	st = status
+	a = add
 	s  = status -sb
+	c  = checkout --
 	br = branch
 	co = checkout
 	cp = cherry-pick
