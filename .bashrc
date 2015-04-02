@@ -69,49 +69,56 @@ function parse_git_ci {
 			 BRANCH="(no branch)"
 		fi
 		if [[ "$GIT_STATUS" =~ ^nothing.* ]]; then
-			echo -ne " \e[1;37m[ \e[1;32m${BRANCH}\e[1;37m ]"
+			echo -ne "  \e[1;37m [\e[1;32m${BRANCH}\e[1;37m]"
 		else 
-			echo -ne " \e[1;37m[ \e[1;31m${BRANCH}\e[1;37m ]"
+			echo -ne " \e[1;37m [\e[1;31m${BRANCH}\e[1;37m]"
 		fi
 	fi
 }
 
 
 function prompt_right() {
+	echo $(parse_git_ci)
 	#echo -e "\033[0;37m\$(parse_git_ci)\033[0m"
-	echo -e "\e[0;37m\$(parse_git_ci)\e[0m"
+	#echo -e "\e[0;37m\$(parse_git_ci)\e[0m"
 }
+
+export COLOR_WHITE=37
+export COLOR_YELLOW=33
+export COLOR_GREEN=32
+export COLOR_RED=31
+
 function prompt_left() {
 	 if [ "${TERM}" == "screen" ]; then
-			PR_COLOR=33
+			PR_COLOR=$COLOR_YELLOW
 	 else
-			PR_COLOR=31
+			PR_COLOR=$COLOR_RED
 	 fi
 	 if [ "$UID" -eq 0 ]; then
-			U_COLOR=31
-			H_COLOR=37
+			U_COLOR=$COLOR_RED
+			H_COLOR=$COLOR_YELLOW
 			PR="<|>"
 	 else
-			U_COLOR=32
-			H_COLOR=32
+			U_COLOR=$COLOR_YELLOW
+			H_COLOR=$COLOR_GREEN
 			PR="\xe2\x88\x91"
 	 fi
 	
 
-	#echo -e "\e[1;34m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
-	echo -e "\e[01;${U_COLOR}m\]\u\e[1;${H_COLOR}m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]$(prompt_right) \[\e[1;${PR_COLOR}m\]${PR}\e[0;37m\]\e[00m\]"
+#	echo -e "\e[1;34m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
+	echo -e "\e[0;${U_COLOR}m\]\u\e[0;${H_COLOR}m\]\e[0;${COLOR_WHITE}m\]@\e[0;${H_COLOR}m\]\h\[\e[00m\]:\[\e[0;34m\]\w\e[00m\]$(prompt_right) \[\e[1;${PR_COLOR}m\]${PR}\e[0;37m\]\e[00m\]"
 	#echo -e "\e[01;${U_COLOR}m\]\u\e[1;32m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]$(prompt_right) \[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]\e[00m\]"
 }
-function prompt() {
-	P=263
-	PS1=$(printf "%s " "$(prompt_left)")
-	# "$(prompt_right)")
-	compensate=-12
-	#PS1=$(printf "%*s\r%s " "$(($(tput cols)+${compensate}))" "$(prompt_right)" "$(prompt_left)")
-	#PS1=$(printf "%s%s " "$(prompt_right)" "$(prompt_left)")
-}
+#function prompt() {
+#	P=263
+#	PS1=$(printf "%s " "$(prompt_left)")
+#	# "$(prompt_right)")
+#	compensate=-12
+#	#PS1=$(printf "%*s\r%s " "$(($(tput cols)+${compensate}))" "$(prompt_right)" "$(prompt_left)")
+#	#PS1=$(printf "%s%s " "$(prompt_right)" "$(prompt_left)")
+#}
 
-PROMPT_COMMAND=prompt
+#PROMPT_COMMAND=prompt
 
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;00m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
