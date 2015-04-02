@@ -232,3 +232,8 @@ export HERA_VERSION_PREFIX=lestr
 if [ -f ~/.chromium.env ]; then
 	. ~/.chromium.env
 fi
+if ! $(which brew &> /dev/null); then
+	if [ -f `brew --prefix`/etc/bash_completion ]; then
+		source `brew --prefix`/etc/bash_completion
+	fi
+fi
