@@ -69,16 +69,17 @@ function parse_git_ci {
 			 BRANCH="(no branch)"
 		fi
 		if [[ "$GIT_STATUS" =~ ^nothing.* ]]; then
-			echo -ne "  \e[1;37m [\e[1;32m${BRANCH}\e[1;37m]"
+			BRANCH_COLOR=$COLOR_GREEN
 		else 
-			echo -ne " \e[1;37m [\e[1;31m${BRANCH}\e[1;37m]"
+			BRANCH_COLOR=$COLOR_RED
 		fi
+		echo -ne " \e[1;${COLOR_RED}m\] (\e[0;${BRANCH_COLOR}m\]${BRANCH}\e[1;${COLOR_RED}m\]) "
 	fi
 }
 
 
 function prompt_right() {
-	echo $(parse_git_ci)
+	echo -e $(parse_git_ci)
 	#echo -e "\033[0;37m\$(parse_git_ci)\033[0m"
 	#echo -e "\e[0;37m\$(parse_git_ci)\e[0m"
 }
@@ -87,8 +88,9 @@ export COLOR_WHITE=37
 export COLOR_YELLOW=33
 export COLOR_GREEN=32
 export COLOR_RED=31
+export COLOR_BLUE=34
 
-function prompt_left() {
+function prompt() {
 	 if [ "${TERM}" == "screen" ]; then
 			PR_COLOR=$COLOR_YELLOW
 	 else
@@ -104,9 +106,8 @@ function prompt_left() {
 			PR="\xe2\x88\x91"
 	 fi
 	
-
 #	echo -e "\e[1;34m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
-	echo -e "\e[0;${U_COLOR}m\]\u\e[0;${H_COLOR}m\]\e[0;${COLOR_WHITE}m\]@\e[0;${H_COLOR}m\]\h\[\e[00m\]:\[\e[0;34m\]\w\e[00m\]$(prompt_right) \[\e[1;${PR_COLOR}m\]${PR}\e[0;37m\]\e[00m\]"
+	echo -e "\e[1;${U_COLOR}m\]\u\e[1;${H_COLOR}m\]\e[1;${COLOR_WHITE}m\]@\e[1;${H_COLOR}m\]\h\e[${COLOR_WHITE}m\]:\e[1;${COLOR_BLUE}m\]\w$(prompt_right)\e[1;${COLOR_WHITE}m\]:=\e[1;${PR_COLOR}m\]${PR} \e[0;${COLOR_WHITE}m\]\e[00m\]"
 	#echo -e "\e[01;${U_COLOR}m\]\u\e[1;32m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]$(prompt_right) \[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]\e[00m\]"
 }
 #function prompt() {
@@ -121,8 +122,7 @@ function prompt_left() {
 #PROMPT_COMMAND=prompt
 
 if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;00m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;00m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[00m\]\[\033[01;31m\]$(parse_git_ci)\[\033[00m\]\$ '
+	PS1=$(prompt)
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
