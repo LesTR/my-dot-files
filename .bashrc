@@ -69,13 +69,14 @@ function parse_git_ci {
 			 BRANCH="(no branch)"
 		fi
 		if [[ "$GIT_STATUS" =~ ^nothing.* ]]; then
+		#if [[ $(echo "$GIT_STATUS" | grep -ic "modified:") -eq "0" ]]; then
 			BRANCH_COLOR=$COLOR_GREEN
 		else 
 			BRANCH_COLOR=$COLOR_RED
 		fi
 		NEED_PUSH=""
 		#if [[ "$GIT_STATUS" =~ ahead.* ]]; then
-		if [ $(echo "$GIT_STATUS" | grep -ic "Your branch is ahead of") -eq 0 ]; then
+		if [ $(echo "$GIT_STATUS" | grep -ic "Your branch is ahead of") -eq 1 ]; then
 			NEED_PUSH="\e[0;${COLOR_YELLOW}m\]!"
 		fi;
 		echo -ne " \e[1;${COLOR_RED}m\] (\e[1;${BRANCH_COLOR}m\]${BRANCH}${NEED_PUSH}\e[1;${COLOR_RED}m\]) "
