@@ -18,12 +18,18 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# some colors varibles used in propmt
+export COLOR_WHITE=37
+export COLOR_YELLOW=33
+export COLOR_GREEN=32
+export COLOR_RED=31
+export COLOR_BLUE=34
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# NOT NEEDED NOW
+# shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -53,7 +59,6 @@ fi
 
 
 parse_git_branch() { 
-	#echo -ne "[" && git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/B:\1/'|tr -d "\n" && echo -ne "]"
 	_pwd=`pwd`
 	if $(which git &> /dev/null) && test -d "$_pwd/.git" ; then
 		git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/' | tr -d " "
@@ -63,38 +68,35 @@ function parse_git_ci {
 	if ! $(which git &> /dev/null); then return; fi
 	if ! test -d "`pwd`/.git"; then return; fi
 	if git rev-parse --git-dir &> /dev/null; then
+		LONG_GIT_STATUS=`git status 2> /dev/null`
+		#GIT_STATUS=`echo $LONG_GIT_STATUS | tail -n1`
 		GIT_STATUS=`git status 2> /dev/null | tail -n1`
 		BRANCH=$(parse_git_branch)
 		if [ -z "$BRANCH" ]; then
-			 BRANCH="(no branch)"
+			 BRANCH="no branch"
 		fi
 		if [[ "$GIT_STATUS" =~ ^nothing.* ]]; then
 		#if [[ $(echo "$GIT_STATUS" | grep -ic "modified:") -eq "0" ]]; then
+
+		#if [[ `echo $LONG_GIT_STATUS | tail -n1` =~ ^nothing.* ]]; then
 			BRANCH_COLOR=$COLOR_GREEN
 		else 
 			BRANCH_COLOR=$COLOR_RED
 		fi
 		NEED_PUSH=""
-		#if [[ "$GIT_STATUS" =~ ahead.* ]]; then
-		if [ $(echo "$GIT_STATUS" | grep -ic "Your branch is ahead of") -eq 1 ]; then
+		if [[ `echo $LONG_GIT_STATUS | head -n2 | tail -n1` =~ .*is.*ahead.* ]]; then
 			NEED_PUSH="\e[0;${COLOR_YELLOW}m\]!"
 		fi;
-		echo -ne " \e[1;${COLOR_RED}m\] (\e[1;${BRANCH_COLOR}m\]${BRANCH}${NEED_PUSH}\e[1;${COLOR_RED}m\]) "
+		echo -ne "\e[1;${COLOR_WHITE}m(\e[1;${BRANCH_COLOR}m$BRANCH\e[1;${COLOR_WHITE}m)"
+		#echo -ne " \e[1;${COLOR_RED}m\] (\e[1;${BRANCH_COLOR}m\]${BRANCH}${NEED_PUSH}\e[1;${COLOR_RED}m\]) "
 	fi
 }
 
 
 function prompt_right() {
 	echo -e $(parse_git_ci)
-	#echo -e "\033[0;37m\$(parse_git_ci)\033[0m"
-	#echo -e "\e[0;37m\$(parse_git_ci)\e[0m"
 }
 
-export COLOR_WHITE=37
-export COLOR_YELLOW=33
-export COLOR_GREEN=32
-export COLOR_RED=31
-export COLOR_BLUE=34
 
 function prompt() {
 	 if [ "${TERM}" == "screen" ]; then
@@ -111,21 +113,16 @@ function prompt() {
 			H_COLOR=$COLOR_GREEN
 			PR="\xe2\x88\x91"
 	 fi
-	
+	PR="\e[1;${COLOR_RED}m\[${PR}"
+	 
+	echo -en "\e[1;${U_COLOR}m\u\e[1;${COLOR_WHITE}m@\e[1;${H_COLOR}m\h\e[1;${COLOR_WHITE}m:\e[1;${COLOR_BLUE}m\w$(prompt_right)${PR}\e[m"
+
+
 #	echo -e "\e[1;34m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
-	echo -e "\e[1;${U_COLOR}m\]\u\e[1;${H_COLOR}m\]\e[1;${COLOR_WHITE}m\]@\e[1;${H_COLOR}m\]\h\e[${COLOR_WHITE}m\]:\e[1;${COLOR_BLUE}m\]\w$(prompt_right)\e[1;${COLOR_WHITE}m\]:=\e[1;${PR_COLOR}m\]${PR} \e[0;${COLOR_WHITE}m\]\e[00m\]"
+	#echo -e "\e[1;${U_COLOR}m\]\u\e[1;${H_COLOR}m\]\e[1;${COLOR_WHITE}m\]@\e[1;${H_COLOR}m\]\h\e[${COLOR_WHITE}m\]:\e[1;${COLOR_BLUE}m\]\w$(prompt_right)\e[1;${COLOR_WHITE}m\]:=\e[1;${PR_COLOR}m\]${PR} \e[0;${COLOR_WHITE}m\]\e[00m\]"
 	#echo -e "\e[01;${U_COLOR}m\]\u\e[1;32m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]$(prompt_right) \[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]\e[00m\]"
 }
-#function prompt() {
-#	P=263
-#	PS1=$(printf "%s " "$(prompt_left)")
-#	# "$(prompt_right)")
-#	compensate=-12
-#	#PS1=$(printf "%*s\r%s " "$(($(tput cols)+${compensate}))" "$(prompt_right)" "$(prompt_left)")
-#	#PS1=$(printf "%s%s " "$(prompt_right)" "$(prompt_left)")
-#}
 
-#PROMPT_COMMAND=prompt
 
 if [ "$color_prompt" = yes ]; then
 	PS1=$(prompt)
