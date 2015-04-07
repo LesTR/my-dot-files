@@ -115,7 +115,7 @@ function prompt() {
 	 fi
 	PR="\e[1;${COLOR_RED}m\[${PR}"
 	 
-	echo -en "\e[1;${U_COLOR}m\u\e[1;${COLOR_WHITE}m@\e[1;${H_COLOR}m\h\e[1;${COLOR_WHITE}m:\e[1;${COLOR_BLUE}m\w$(prompt_right)${PR}\e[m"
+	echo -en "\e[1;${U_COLOR}m\u\e[1;${COLOR_WHITE}m@\e[1;${H_COLOR}m\h\e[1;${COLOR_WHITE}m:\e[1;${COLOR_BLUE}m\w$(prompt_right)${PR} \e[m"
 
 
 #	echo -e "\e[1;34m\]\u\e[1;37m\]@\h\[\e[00m\]:\[\e[1;34m\]\w\e[00m\]\n\[\e[1;${PR_COLOR}m\]\xe2\x88\x91\e[0;37m\]"
