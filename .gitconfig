@@ -1,7 +1,7 @@
 [user]
 	# you probably want to change this bit
 	name = Lukas Drbal
-	email = lukas.drbal@socialbakers.com
+	email = lukas.drbal@merck.com
 [alias]
 	cl = log --graph --pretty=format:'%h%d %s (%an)'
 	ci = commit

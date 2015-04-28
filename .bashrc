@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/games:/usr/games:$HOME/bin
+PATH=/usr/local/bin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/games:/usr/games:$HOME/bin:/usr/local/opt/coreutils/libexec/gnubin
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -141,9 +141,12 @@ xterm*|rxvt*)
 esac
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+
+_DIRCOLORS=$(which dircolors)
+
+if [ -x "${_DIRCOLORS}" ]; then
+    test -r ~/.dircolors && eval "$($_DIRCOLORS -b ~/.dircolors)" || eval "$($_DIRCOLORS -b)"
+    #alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -178,7 +181,6 @@ if [ -f ~/.bash_autocomplete ]; then
     . ~/.bash_autocomplete
 fi
 
-export EDITOR=vim
 export DEBFULLNAME='Lukas Drbal'
 export DEBEMAIL='lukas.drbal@socialbakers.com'
 
@@ -190,11 +192,13 @@ genpasswd() {
 }
 
 tmp () {
-	cd `_mktmp`
+	local TMZ=$(date +%s)
+	mkdir "tmp_$TMZ"
+	cd "tmp_$TMZ"
 }
 
 tmpclone () {
-	cd `_mktmp`
+	tmp
 	git clone $1
 	cd `ls`
 }
@@ -214,29 +218,16 @@ if $(which xsel &> /dev/null); then
 	alias pbcopy='xsel -b'
 fi;
 
-EDITOR="vim"
-SUDO_EDITOR=$EDITOR
-#if $(which vimpager &> /dev/null) 
-#then 
-#	export PAGER="vimpager -c 'ft=man nomod nolist'"
-#else
-#	export PAGER="less"
-#fi
-#if $(which vimmanpager &> /dev/null) 
-#then 
-#	export MANPAGER="vimmanpager"
-#else
-#	export MANPAGER="col -b | vimpager -c 'set ft=man nomod nolist'"
-#fi
-
-export HERA_VERSION_PREFIX=lestr
+export EDITOR="vim"
+export SUDO_EDITOR=$EDITOR
 
 #source fucking google API keys for chromium
 if [ -f ~/.chromium.env ]; then
 	. ~/.chromium.env
 fi
-if ! $(which brew &> /dev/null); then
-	if [ -f `brew --prefix`/etc/bash_completion ]; then
-		source `brew --prefix`/etc/bash_completion
+
+if $(which brew &> /dev/null); then
+	if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+		. $(brew --prefix)/share/bash-completion/bash_completion
 	fi
 fi

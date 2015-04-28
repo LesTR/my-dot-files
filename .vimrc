@@ -23,6 +23,8 @@
 "	Plugin 'terryma/vim-multiple-cursors'
 	Bundle 'derekwyatt/vim-scala'
 	Bundle 'kchmck/vim-coffee-script'
+	Bundle 'geoffharcourt/vim-matchit'
+	Bundle 'msanders/snipmate.vim'
 
 	"...All your other bundles...
 	if iCanHazVundle == 0
@@ -72,6 +74,9 @@ set laststatus=2
 "set termencoding=latin2
 "set background=light
 set background=dark
+"font for macvim
+set guifont=Monaco\ for\ Powerline:h12
+
 set listchars=tab:▸—,eol:.,nbsp:_
 set incsearch
 "set scrolloff=1000              " center cursor vertically
@@ -79,6 +84,11 @@ set incsearch
 set tabpagemax=30
 "set backup
 "set backupdir=~/.vimbackups/
+
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+
 "set wildignore+=**/node_modules/*
 "let g:ctrlp_custom_ignore = 'node_modules'
 let g:CommandTMaxHeight=20
