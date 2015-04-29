@@ -121,6 +121,7 @@ function prompt() {
 	PS1=$(printf "%s " "$(prompt_left)")
 }
 PROMPT_COMMAND=prompt
+PROMPT_DIRTRIM=3
 
 if [ "$color_prompt" = yes ]; then
 	PS1X=$(prompt)
