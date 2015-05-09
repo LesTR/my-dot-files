@@ -33,11 +33,6 @@ export COLOR_GREEN=32
 export COLOR_RED=31
 export COLOR_BLUE=34
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-# NOT NEEDED NOW
-# shopt -s checkwinsize
-
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -153,20 +148,7 @@ _DIRCOLORS=$(which dircolors)
 
 if [ -x "${_DIRCOLORS}" ]; then
     test -r ~/.dircolors && eval "$($_DIRCOLORS -b ~/.dircolors)" || eval "$($_DIRCOLORS -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    #alias fgrep='fgrep --color=auto'
-    #alias egrep='egrep --color=auto'
 fi
-
-# some more ls aliases
-alias ll='ls -l'
-alias la='ls -A'
-alias l='ls -CF'
-alias mtr='mtr --curses'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -188,24 +170,9 @@ if [ -f ~/.bash_autocomplete ]; then
     . ~/.bash_autocomplete
 fi
 
-# Password generator
-genpasswd() {
-	 local l=$1
-	  [ "$l" == "" ] && l=20
-	   tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
-}
-
-createTmpDir () {
-	local TMZ=$(date +%s)
-	mkdir "tmp_$TMZ"
-	cd "tmp_$TMZ"
-}
-
-tmpclone () {
-	createTmpDir
-	git clone $1
-	cd `ls`
-}
+if [ -f ~/.bash_functions ]; then
+    . ~/.bash_functions
+fi
 
 if [[ -d $HOME/.rvm ]]; then
 	PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
@@ -213,14 +180,6 @@ fi
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 
-httpshare () {
-	python -m SimpleHTTPServer 8000
-}
-
-
-if $(which xsel &> /dev/null); then
-	alias pbcopy='xsel -b'
-fi;
 
 #source fucking google API keys for chromium
 if [ -f ~/.chromium.env ]; then
