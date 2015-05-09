@@ -1,0 +1,3 @@
+set colored-stats on
+set blink-matching-paren on
+set completion-prefix-display-length 10

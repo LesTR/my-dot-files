@@ -18,6 +18,14 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+export LC_CTYPE="en_US.UTF-8"
+export DEBFULLNAME='Lukas Drbal'
+export DEBEMAIL='lukas.drbal@socialbakers.com'
+export EDITOR="vim"
+export SUDO_EDITOR=$EDITOR
+
+
+
 # some colors varibles used in propmt
 export COLOR_WHITE=37
 export COLOR_YELLOW=33
@@ -180,9 +188,6 @@ if [ -f ~/.bash_autocomplete ]; then
     . ~/.bash_autocomplete
 fi
 
-export DEBFULLNAME='Lukas Drbal'
-export DEBEMAIL='lukas.drbal@socialbakers.com'
-
 # Password generator
 genpasswd() {
 	 local l=$1
@@ -217,16 +222,16 @@ if $(which xsel &> /dev/null); then
 	alias pbcopy='xsel -b'
 fi;
 
-export EDITOR="vim"
-export SUDO_EDITOR=$EDITOR
-
 #source fucking google API keys for chromium
 if [ -f ~/.chromium.env ]; then
 	. ~/.chromium.env
 fi
 
 if $(which brew &> /dev/null); then
-	if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-		. $(brew --prefix)/share/bash-completion/bash_completion
+	if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    	. $(brew --prefix)/etc/bash_completion
 	fi
+#	if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
+#		. $(brew --prefix)/share/bash-completion/bash_completion
+#	fi
 fi
