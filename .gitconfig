@@ -18,6 +18,8 @@
 	lo = log --oneline
 	authors = log --pretty=format:'%an <%ae>'
 	browse = instaweb -d webrick -p 8888
+	nt = ls-files -o --exclude-standard
+	ign = ls-files -o -i --exclude-standard
 	# Typos ...
 	dif = diff
 	di = diff
