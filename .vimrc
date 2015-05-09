@@ -218,6 +218,42 @@ else
   set autoindent		" always set autoindenting on
 endif " has("autocmd")
 
+" func ListToggle {{{
+function! ListToggle()
+    if &list
+        set nolist
+    else
+        set list
+    endif
+endfunction
+" }}}
+
+" func NumberToggle {{{
+function! NumberToggle()
+    if &number
+        set nonu
+	GitGutterDisable
+    else
+        set nu
+	GitGutterEnable
+    endif
+endfunction
+" }}}
+
+" func PasteToggle {{{
+function! PasteToggle()
+    if &paste
+        set nopaste
+    else
+        set paste
+    endif
+endfunction
+" }}}
+
+map <S-L> :cal ListToggle()<cr>
+map <S-N> :cal NumberToggle()<cr>
+map <S-P> :cal PasteToggle()<cr>
+
 
 colors twilight256
 
