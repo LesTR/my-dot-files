@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<root>
+	<item>
+		<name>ME: Fn+hjkl to Left/Down/Up/Right</name>
+		<identifier>option.vimode_fn_hjkl_me</identifier>
+		<autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT</autogen>
+		<autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN</autogen>
+		<autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP</autogen>
+		<autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT</autogen>
+	</item>
+</root>
