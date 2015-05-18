@@ -1,11 +1,75 @@
 <?xml version="1.0"?>
 <root>
+	<appdef>
+		<appname>ITERM2</appname>
+		<equal>com.googlecode.iterm2</equal>
+	</appdef>
 	<item>
 		<name>ME: Fn+hjkl to Left/Down/Up/Right</name>
-		<identifier>option.vimode_fn_hjkl_me</identifier>
+		<identifier>private.vimode_fn_hjkl_me</identifier>
+		<autogen>__KeyToKey__ KeyCode::I, ModifierFlag::FN, KeyCode::HOME</autogen>
+		<autogen>__KeyToKey__ KeyCode::A, ModifierFlag::FN, KeyCode::END</autogen>
 		<autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT</autogen>
 		<autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN</autogen>
 		<autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP</autogen>
 		<autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT</autogen>
+	</item>
+	<item>
+		<name>ME: smart tabs browsing</name>
+		<item>
+			<name>Google chrome</name>
+			<identifier>private.smart_tabs_browsing_chrome</identifier>
+			<only>GOOGLE_CHROME</only>
+			<autogen>
+				__KeyToKey__ 
+				KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::L, ModifierFlag::CONTROL_L, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::J, ModifierFlag::CONTROL_L, KeyCode::KEY_1, ModifierFlag::COMMAND_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::K, ModifierFlag::CONTROL_L, KeyCode::KEY_9, ModifierFlag::COMMAND_L
+			</autogen>
+		</item>
+		<item>
+			<name>Iterm2</name>
+			<identifier>private.smart_tabs_browsing_iterm2</identifier>
+			<only>ITERM2</only>
+			<autogen>
+				__KeyToKey__ 
+				KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::L, ModifierFlag::CONTROL_L, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L
+			</autogen>
+			<!--autogen>
+				__KeyToKey__
+				KeyCode::J, ModifierFlag::CONTROL_L, KeyCode::KEY_1, ModifierFlag::COMMAND_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::K, ModifierFlag::CONTROL_L, KeyCode::KEY_9, ModifierFlag::COMMAND_L
+			</autogen-->
+			<!-- ctrl+t => new tab -->
+			<autogen>
+				__KeyToKey__
+				KeyCode::T, ModifierFlag::CONTROL_L, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+			</autogen>
+		</item>
+	</item>
+	<item>
+		<name>ME: Shift Delete to Forward Delete</name>
+		<identifier>private.delete2forwarddelete</identifier>
+		<autogen>
+			__KeyToKey__ KeyCode::DELETE, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_SHIFT | ModifierFlag::NONE,
+			KeyCode::FORWARD_DELETE
+		</autogen>
 	</item>
 </root>
