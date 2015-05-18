@@ -70,6 +70,10 @@
 				__KeyToKey__
 				KeyCode::T, ModifierFlag::CONTROL_L, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::W, ModifierFlag::CONTROL_L, KeyCode::W, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+			</autogen>
 		</item>
 	</item>
 	<item>
