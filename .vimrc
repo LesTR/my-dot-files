@@ -125,8 +125,10 @@ let g:miniBufExplMapWindowNavVim = 1
 syntax on
 
 " Tabs
-map <S-j> :tabprev<CR>
-map <S-K> :tabnext<CR>
+map <S-h> :tabprev<CR>
+map <S-j> :tabfirst<CR>
+map <S-k> :tablast<CR>
+map <S-l> :tabnext<CR>
 map <S-T> :tabnew<CR>
 
 " kopirovani a ukladani do glob bufferu
@@ -250,7 +252,7 @@ function! PasteToggle()
 endfunction
 " }}}
 
-map <S-L> :cal ListToggle()<cr>
+map <S-B> :cal ListToggle()<cr>
 map <S-N> :cal NumberToggle()<cr>
 map <S-P> :cal PasteToggle()<cr>
 
