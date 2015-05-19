@@ -84,4 +84,12 @@
 			KeyCode::FORWARD_DELETE
 		</autogen>
 	</item>
+	<item>
+		<name>ME: disable Left/Down/Up/Right arrows</name>
+		<identifier>private.disable_cursor_arrows</identifier>
+		<autogen>__KeyToKey__ KeyCode::CURSOR_LEFT, KeyCode::VK_NONE</autogen>
+		<autogen>__KeyToKey__ KeyCode::CURSOR_RIGHT, KeyCode::VK_NONE</autogen>
+		<autogen>__KeyToKey__ KeyCode::CURSOR_UP, KeyCode::VK_NONE</autogen>
+		<autogen>__KeyToKey__ KeyCode::CURSOR_DOWN, KeyCode::VK_NONE</autogen>
+	</item>
 </root>
