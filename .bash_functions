@@ -20,4 +20,6 @@ httpshare () {
 	python -m SimpleHTTPServer 8000
 }
 
-
+myjshon () {
+	python -m json.tool
+}

@@ -29,3 +29,9 @@ fi
 if $(which xsel &> /dev/null); then
 	alias pbcopy='xsel -b'
 fi
+
+if ! $(which jshon &> /dev/null); then
+	alias jshon='myjshon'
+else
+	unalias jshon &>/dev/null
+fi
