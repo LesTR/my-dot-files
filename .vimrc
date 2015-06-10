@@ -25,6 +25,7 @@
 	Bundle 'kchmck/vim-coffee-script'
 	Bundle 'geoffharcourt/vim-matchit'
 	Bundle 'msanders/snipmate.vim'
+	Bundle 'chase/vim-ansible-yaml'
 
 	"...All your other bundles...
 	if iCanHazVundle == 0
@@ -96,7 +97,6 @@ let g:CommandTMaxHeight=20
 "set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 "let g:Powerline_symbols = 'fancy'
 
-
 set showbreak=~~
 
 set statusline=[%n]\ %<%F\ \ \ \ \ \ \ \ \ \ \ [%M%R%H%W%Y]\ [%{&ff}]\ \ %=\ line:%l/%L\ col:%c\ \ \ %p%%\ \ \ @%{strftime(\"%H:%M:%S\")}
@@ -123,13 +123,6 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 "let g:miniBufExplVSplit = 20   " column width in chars
 let g:miniBufExplMapWindowNavVim = 1
 syntax on
-
-" Tabs
-map <S-h> :tabprev<CR>
-map <S-j> :tabfirst<CR>
-map <S-k> :tablast<CR>
-map <S-l> :tabnext<CR>
-map <S-T> :tabnew<CR>
 
 " kopirovani a ukladani do glob bufferu
 vmap <C-y> "+y
@@ -255,6 +248,13 @@ endfunction
 map <S-B> :cal ListToggle()<cr>
 map <S-N> :cal NumberToggle()<cr>
 map <S-P> :cal PasteToggle()<cr>
+
+" Tabs movement
+map <S-h> :tabprev<CR>
+map <S-j> :tabfirst<CR>
+map <S-k> :tablast<CR>
+map <S-l> :tabnext<CR>
+map <S-T> :tabnew<CR>
 
 
 colors twilight256

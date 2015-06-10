@@ -10,6 +10,7 @@
 	s  = status -sb
 	c  = checkout --
 	br = branch
+	bra = branch --all
 	co = checkout
 	cp = cherry-pick
 	df = diff
