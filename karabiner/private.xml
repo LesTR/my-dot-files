@@ -5,6 +5,17 @@
 		<equal>com.googlecode.iterm2</equal>
 	</appdef>
 	<item>
+		<name>ME: swap ~ and ±</name>
+		<identifier>private.swapTilda</identifier>
+		<block>
+			<device_only>
+				DeviceVendor::APPLE_COMPUTER, DeviceProduct::APPLE_WIRELESS_KEYBOARD_0x0256
+			</device_only>
+			<autogen>__KeyToKey__ KeyCode::BACKQUOTE,  KeyCode::UK_SECTION</autogen>
+			<autogen>__KeyToKey__ KeyCode::UK_SECTION, KeyCode::BACKQUOTE</autogen>
+		</block>
+	</item>
+	<item>
 		<name>ME: Fn+hjkl to Left/Down/Up/Right</name>
 		<identifier>private.vimode_fn_hjkl_me</identifier>
 		<autogen>__KeyToKey__ KeyCode::I, ModifierFlag::FN, KeyCode::HOME</autogen>
