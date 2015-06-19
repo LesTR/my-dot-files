@@ -33,19 +33,19 @@
 			<only>GOOGLE_CHROME</only>
 			<autogen>
 				__KeyToKey__ 
-				KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+				KeyCode::H, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::L, ModifierFlag::CONTROL_L, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+				KeyCode::L, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::J, ModifierFlag::CONTROL_L, KeyCode::KEY_1, ModifierFlag::COMMAND_L
+				KeyCode::J, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::KEY_1, ModifierFlag::COMMAND_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::K, ModifierFlag::CONTROL_L, KeyCode::KEY_9, ModifierFlag::COMMAND_L
+				KeyCode::K, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::KEY_9, ModifierFlag::COMMAND_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
@@ -80,6 +80,10 @@
 			<autogen>
 				__KeyToKey__
 				KeyCode::T, ModifierFlag::CONTROL_L, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::W, ModifierFlag::COMMAND_L, KeyCode::VK_NONE, ModifierFlag::NONE
 			</autogen>
 			<!--autogen>
 				__KeyToKey__
