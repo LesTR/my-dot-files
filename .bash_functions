@@ -17,7 +17,10 @@ tmpclone () {
 	cd `ls`
 }
 httpshare () {
-	python -m SimpleHTTPServer 8000
+	echo -e "Starting simple HTTP server. Listening on:\n"
+	for ip in $(ifconfig | grep "inet " | grep -v "127.0" | awk '{ print $2 }'); do echo -e "\thttp://${ip}:8000"; done
+	echo ""
+	python -m SimpleHTTPServer 8000 2>/dev/null
 }
 
 myjshon () {
@@ -29,12 +32,16 @@ merckProxy () {
 		"start")
 			echo "Starting proxy"
 			export http_proxy=$merck_proxy
+			export https_proxy=$merck_proxy
+			export ftp_proxy=$merck_proxy
 			export ALL_PROXY=$merck_proxy
 			echo "[DONE]"
 		;;
 		"stop")
 			echo "Stopping proxy"
 			unset http_proxy
+			unset https_proxy
+			unset ftp_proxy
 			unset ALL_PROXY
 			echo "[DONE]"
 		;;
