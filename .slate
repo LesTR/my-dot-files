@@ -19,4 +19,9 @@ bind left:ctrl;alt;cmd  throw left  resize
 bind up:ctrl;alt;cmd    throw up    resize
 bind down:ctrl;alt;cmd  throw down  resize
 
+bind l:ctrl;alt;cmd throw right resize
+bind h:ctrl;alt;cmd  throw left  resize
+bind k:ctrl;alt;cmd    throw up    resize
+bind j:ctrl;alt;cmd  throw down  resize
+
 bind esc:cmd hint
