@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 <root>
-	<appdef>
-		<appname>ITERM2</appname>
-		<equal>com.googlecode.iterm2</equal>
-	</appdef>
 	<item>
 		<name>ME: swap ~ and ±</name>
 		<identifier>private.swapTilda</identifier>
@@ -18,12 +14,12 @@
 	<item>
 		<name>ME: Fn+hjkl to Left/Down/Up/Right</name>
 		<identifier>private.vimode_fn_hjkl_me</identifier>
-		<autogen>__KeyToKey__ KeyCode::I, ModifierFlag::FN, KeyCode::HOME</autogen>
-		<autogen>__KeyToKey__ KeyCode::A, ModifierFlag::FN, KeyCode::END</autogen>
-		<autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT</autogen>
-		<autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN</autogen>
-		<autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP</autogen>
-		<autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT</autogen>
+		<autogen>__KeyToKey__ KeyCode::I, ModifierFlag::FN|ModifierFlag::NONE, KeyCode::HOME</autogen>
+		<autogen>__KeyToKey__ KeyCode::A, ModifierFlag::FN|ModifierFlag::NONE, KeyCode::END</autogen>
+		<autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN|ModifierFlag::NONE, KeyCode::CURSOR_LEFT</autogen>
+		<autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN|ModifierFlag::NONE, KeyCode::CURSOR_DOWN</autogen>
+		<autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN|ModifierFlag::NONE, KeyCode::CURSOR_UP</autogen>
+		<autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN|ModifierFlag::NONE, KeyCode::CURSOR_RIGHT</autogen>
 	</item>
 	<item>
 		<name>ME: smart tabs browsing</name>
@@ -33,53 +29,82 @@
 			<only>GOOGLE_CHROME</only>
 			<autogen>
 				__KeyToKey__ 
-				KeyCode::H, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+				KeyCode::H, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::L, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+				KeyCode::L, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::J, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::KEY_1, ModifierFlag::COMMAND_L
+				KeyCode::J, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::KEY_1, ModifierFlag::COMMAND_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::K, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::KEY_9, ModifierFlag::COMMAND_L
+				KeyCode::K, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::KEY_9, ModifierFlag::COMMAND_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::T, ModifierFlag::CONTROL_L, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+				KeyCode::T, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::W, ModifierFlag::CONTROL_L, KeyCode::W, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+				KeyCode::W, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::W, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+			</autogen>
+		</item>
+		<item>
+			<name>Mozilla Firefox</name>
+			<identifier>private.smart_tabs_browsing_firefox</identifier>
+			<only>FIREFOX</only>
+			<autogen>
+				__KeyToKey__ 
+				KeyCode::H, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::TAB, ModifierFlag::CONTROL_L|ModifierFlag::SHIFT_L|ModifierFlag::NONE
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::L, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::TAB, ModifierFlag::CONTROL_L|ModifierFlag::NONE
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::J, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::KEY_1, ModifierFlag::COMMAND_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::K, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::KEY_9, ModifierFlag::COMMAND_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::T, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::W, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::W, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen>
 		</item>
 		<item>
 			<name>Iterm2</name>
 			<identifier>private.smart_tabs_browsing_iterm2</identifier>
-			<only>ITERM2</only>
+			<only>TERMINAL</only>
 			<autogen>
 				__KeyToKey__ 
-				KeyCode::H, ModifierFlag::CONTROL_L, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L
+				KeyCode::H, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::L, ModifierFlag::CONTROL_L, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L
-			</autogen>
-			<!--autogen>
-				__KeyToKey__
-				KeyCode::J, ModifierFlag::CONTROL_L, KeyCode::KEY_1, ModifierFlag::COMMAND_L
+				KeyCode::L, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::K, ModifierFlag::CONTROL_L, KeyCode::KEY_9, ModifierFlag::COMMAND_L
-			</autogen-->
-			<!-- ctrl+t => new tab -->
+				KeyCode::J, ModifierFlag::CONTROL_L|ModifierFlag::FN, KeyCode::KEY_1, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::T, ModifierFlag::CONTROL_L, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+				KeyCode::K, ModifierFlag::CONTROL_L|ModifierFlag::FN, KeyCode::KEY_9, ModifierFlag::COMMAND_L | ModifierFlag::NONE
+			</autogen>
+			<!-- ctrl+t => new tab in same profile-->
+			<autogen>
+				__KeyToKey__
+				KeyCode::T, ModifierFlag::CONTROL_L, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L|ModifierFlag::SHIFT_L
 			</autogen>
 			<autogen>
 				__KeyToKey__
