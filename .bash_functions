@@ -28,13 +28,17 @@ myjshon () {
 }
 
 merckProxy () {
+	if [ -z "$my_proxy" ]; then
+		echo "Bad configuration, $my_proxy is missing"
+		return -1
+	fi
 	case "$1" in
 		"start")
 			echo "Starting proxy"
-			export http_proxy=$merck_proxy
-			export https_proxy=$merck_proxy
-			export ftp_proxy=$merck_proxy
-			export ALL_PROXY=$merck_proxy
+			export http_proxy=$my_proxy
+			export https_proxy=$my_proxy
+			export ftp_proxy=$my_proxy
+			export ALL_PROXY=$my_proxy
 			echo "[DONE]"
 		;;
 		"stop")
@@ -49,11 +53,21 @@ merckProxy () {
 			if [ -z "$ALL_PROXY" ]; then
 				echo "Not running"
 			else
-				echo "Running"
+				echo "[Running]"
+				echo "Using proxy: $my_proxy"
 			fi
 		;;
 		*)
 			echo "merckProxy (start|stop|status)"
 		;;
 	esac
+}
+
+reverseAdiblePing () {
+	local ip=$1
+	if [ -z "$ip" ]; then
+		echo "Usage reverseAdiblePing <ip>"
+		return 1
+	fi
+	while true; do ping -t 1 -c 1 -W 20 "$ip"; if [ $? != 0 ] ;then echo -en "\a"; fi;sleep 1;done
 }
