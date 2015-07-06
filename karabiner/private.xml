@@ -92,19 +92,19 @@
 			<only>TERMINAL</only>
 			<autogen>
 				__KeyToKey__ 
-				KeyCode::H, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+				KeyCode::H, ModifierFlag::COMMAND_L|ModifierFlag::FN|ModifierFlag::NONE, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::L, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+				KeyCode::L, ModifierFlag::COMMAND_L|ModifierFlag::FN|ModifierFlag::NONE, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::J, ModifierFlag::CONTROL_L|ModifierFlag::FN, KeyCode::KEY_1, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+				KeyCode::J, ModifierFlag::CONTROL_L|ModifierFlag::FN|ModifierFlag::NONE, KeyCode::KEY_1, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen>
 			<autogen>
 				__KeyToKey__
-				KeyCode::K, ModifierFlag::CONTROL_L|ModifierFlag::FN, KeyCode::KEY_9, ModifierFlag::COMMAND_L | ModifierFlag::NONE
+				KeyCode::K, ModifierFlag::CONTROL_L|ModifierFlag::FN|ModifierFlag::NONE, KeyCode::KEY_9, ModifierFlag::COMMAND_L | ModifierFlag::NONE
 			</autogen>
 			<!-- ctrl+t => new tab in same profile-->
 			<autogen>
@@ -115,6 +115,23 @@
 				__KeyToKey__
 				KeyCode::W, ModifierFlag::COMMAND_L, KeyCode::VK_NONE, ModifierFlag::NONE
 			</autogen>
+			<autogen>
+				__KeyToKey__ 
+				KeyCode::H, ModifierFlag::COMMAND_L|ModifierFlag::FN|ModifierFlag::SHIFT_L, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::L, ModifierFlag::COMMAND_L|ModifierFlag::FN|ModifierFlag::SHIFT_L, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::J, ModifierFlag::COMMAND_L|ModifierFlag::FN|ModifierFlag::SHIFT_L, KeyCode::CURSOR_DOWN, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::K, ModifierFlag::COMMAND_L|ModifierFlag::FN|ModifierFlag::SHIFT_L, KeyCode::CURSOR_UP, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+			</autogen>
+			
 			<!--autogen>
 				__KeyToKey__
 				KeyCode::W, ModifierFlag::CONTROL_L, KeyCode::W, ModifierFlag::COMMAND_L|ModifierFlag::NONE
