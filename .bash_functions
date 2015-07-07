@@ -27,7 +27,7 @@ myjshon () {
 	python -m json.tool
 }
 
-merckProxy () {
+myProxy () {
 	if [ -z "$my_proxy" ]; then
 		echo "Bad configuration, $my_proxy is missing"
 		return -1
