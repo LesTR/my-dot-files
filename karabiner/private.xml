@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <root>
+	<appdef>
+		<appname>CISCO_JABBER</appname>
+		<equal>com.cisco.Jabber</equal>
+	</appdef>
 	<item>
 		<name>ME: swap ~ and ±</name>
 		<identifier>private.swapTilda</identifier>
@@ -136,6 +140,19 @@
 				__KeyToKey__
 				KeyCode::W, ModifierFlag::CONTROL_L, KeyCode::W, ModifierFlag::COMMAND_L|ModifierFlag::NONE
 			</autogen-->
+		</item>
+		<item>
+			<name>Cisco Jabber</name>
+			<identifier>private.smart_tabs_browsing_cisco_jabber</identifier>
+			<only>CISCO_JABBER</only>
+			<autogen>
+				__KeyToKey__
+				KeyCode::H, ModifierFlag::COMMAND_L|ModifierFlag::FN|ModifierFlag::NONE, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::L, ModifierFlag::COMMAND_L|ModifierFlag::FN|ModifierFlag::NONE, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L|ModifierFlag::OPTION_L
+			</autogen>
 		</item>
 	</item>
 	<item>
