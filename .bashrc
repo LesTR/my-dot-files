@@ -89,7 +89,7 @@ function parse_git_ci {
 		fi
 		UNTRACKED_FILES=""
 		if [ -n "$(echo $LONG_GIT_STATUS | egrep -ie 'Untracked files:')" ]; then
-			UNTRACKED_FILES="\[\e[00;${COLOR_WHITE}m\]*\[\e[0m\]"
+			UNTRACKED_FILES="\[\e[00;${COLOR_RED}m\]?\[\e[0m\]"
 		fi;
 		echo -ne "(\[\e[01;${BRANCH_COLOR}m\]${BRANCH}${NEED_PUSH}${UNTRACKED_FILES}\[\e[0m\]\[\e[00;${COLOR_WHITE}m\]\[\e[0m\])"
 	fi
