@@ -116,11 +116,14 @@ function prompt_left() {
 		H_COLOR=$COLOR_GREEN
 		PR="\xe2\x88\x91"
 	fi
+	local host='localhost'
 	if [ -n "$SSH_CLIENT" ]; then
 		H_COLOR=$COLOR_RED
+		$host="\h"
 	fi
+
 	PR="\[\e[01;${PR_COLOR}m\]${PR}"
-	echo -en "\[\e[01;${U_COLOR}m\]\u\[\e[0m\]\[\e[01;${COLOR_WHITE}m\]@\[\e[0m\]\[\e[01;${H_COLOR}m\]\h\[\e[0m\]\[\e[00;${COLOR_WHITE}m\]:\[\e[0m\]\[\e[01;${COLOR_BLUE}m\]\w\[\e[0m\]$(prompt_right)\[\e[01;${COLOR_WHITE}m\]:${PR}\[\e[0m\]\[\e[00;${COLOR_WHITE}m\]\[\e[0m\]"
+	echo -en "\[\e[01;${U_COLOR}m\]\u\[\e[0m\]\[\e[01;${COLOR_WHITE}m\]@\[\e[0m\]\[\e[01;${H_COLOR}m\]${host}\[\e[0m\]\[\e[00;${COLOR_WHITE}m\]:\[\e[0m\]\[\e[01;${COLOR_BLUE}m\]\w\[\e[0m\]$(prompt_right)\[\e[01;${COLOR_WHITE}m\]:${PR}\[\e[0m\]\[\e[00;${COLOR_WHITE}m\]\[\e[0m\]"
 }
 
 function prompt() {
