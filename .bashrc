@@ -119,7 +119,7 @@ function prompt_left() {
 	local host='localhost'
 	if [ -n "$SSH_CLIENT" ]; then
 		H_COLOR=$COLOR_RED
-		$host="\h"
+		host="\h"
 	fi
 
 	PR="\[\e[01;${PR_COLOR}m\]${PR}"
