@@ -203,3 +203,13 @@ if $(which brew &> /dev/null); then
 #		. $(brew --prefix)/share/bash-completion/bash_completion
 #	fi
 fi
+#Forward ssh-agent into screen
+if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
+	if [ ! -d ~/.ssh ]; then
+		mkdir ~/.ssh
+	fi
+	ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+fi
+if [ -n "$SSH_AUTH_SOCK" ]; then
+	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+fi
