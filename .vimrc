@@ -27,6 +27,7 @@
 	Bundle 'msanders/snipmate.vim'
 	Bundle 'chase/vim-ansible-yaml'
 	Bundle 'vim-scripts/RltvNmbr.vim'
+	Bundle 'Glench/Vim-Jinja2-Syntax'
 
 	"...All your other bundles...
 	if iCanHazVundle == 0
@@ -270,7 +271,7 @@ colors twilight256
 "hi SignColumn   ctermbg=black
 
 " Enable show relative numbers
-call RltvNmbr#RltvNmbrCtrl(1)
+" call RltvNmbr#RltvNmbrCtrl(1)
 
 " Show cursor line
 set cursorline

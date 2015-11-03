@@ -35,6 +35,7 @@ myProxy () {
 	case "$1" in
 		"start")
 			echo "Starting proxy"
+			echo "Using proxy: $my_proxy"
 			export http_proxy=$my_proxy
 			export https_proxy=$my_proxy
 			export ftp_proxy=$my_proxy
@@ -59,6 +60,7 @@ myProxy () {
 		;;
 		*)
 			echo "merckProxy (start|stop|status)"
+			return 1
 		;;
 	esac
 }
