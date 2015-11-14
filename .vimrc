@@ -38,28 +38,17 @@
 " Setting up Vundle - the vim plugin bundler end
 """"""""""""
 
-""" to finish install of command-t
-"make
-":e command-t.vba
-":so %
-"cd ~/.vim/ruby/command-t
-"ruby extconf.rb
-"make
-
-
+let mapleader=","
 
 set t_Co=256
 "set smartcase
 "set nowrapscan
-"set list
 set nocompatible
-"set exrc
 set number
 set numberwidth=5
 set history=1000
 set backspace=indent,start,eol
 set nojoinspaces
-"set ruler
 set showcmd
 set showmatch
 set hlsearch
@@ -74,30 +63,23 @@ set hls
 set nowritebackup
 set termencoding=utf-8
 set laststatus=2
-"set termencoding=latin2
-"set background=light
 set background=dark
+set lazyredraw " redraw only when we need to.
 "font for macvim
 set guifont=Monaco\ for\ Powerline:h12
 
 set listchars=tab:▸—,eol:.,nbsp:_
 set incsearch
-"set scrolloff=1000              " center cursor vertically
-"colors peachpuff
+nnoremap <leader><space> :nohlsearch<CR>
+
 set tabpagemax=30
-"set backup
-"set backupdir=~/.vimbackups/
 
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
 
-"set wildignore+=**/node_modules/*
-"let g:ctrlp_custom_ignore = 'node_modules'
 let g:CommandTMaxHeight=20
 
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
-"let g:Powerline_symbols = 'fancy'
 
 set showbreak=~~
 
@@ -114,10 +96,7 @@ let g:airline_powerline_fonts = 1
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 
-" pathogen bundles
 filetype off
-"call pathogen#helptags()
-"call pathogen#runtime_append_all_bundles()
 
 
 " minibuffer Explorer settings:new
@@ -125,38 +104,6 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 "let g:miniBufExplVSplit = 20   " column width in chars
 let g:miniBufExplMapWindowNavVim = 1
 syntax on
-
-" kopirovani a ukladani do glob bufferu
-vmap <C-y> "+y
-" vlozeni z globalni schranky
-"map <C-v> "+gP
-" ukladani souboru na bezne <Ctrl>-<s>
-"map <C-s> :w<CR>
-"imap <C-s> <Esc>:w<CR>i
-
-
-
-"map <C-S-tab> :tabprev<cr>
-"nmap <C-S-tab> :tabprev<cr>
-"imap <C-S-tab> <ESC>:tabprev<cr>a
-
-"map <S-tab> :tabnext<cr>
-"nmap <S-tab> :tabnext<cr>
-"imap <S-tab> <ESC>:tabnext<cr>a
-
-"map <C-t> :tabnew 
-"nmap <C-t> :tabnew 
-"imap <C-t> <ESC>:tabnew 
-
-"map <C-p> :CommandT<cr>
-"nmap <C-p> :CommandT<cr>
-"imap <C-p> <ESC>:CommandT<cr>a
-
-"nnoremap <C-J> <C-W><C-J>
-"nnoremap <C-K> <C-W><C-K>
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
-
 
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 			\ "\<lt>C-n>" :
@@ -173,13 +120,6 @@ fun! <SID>StripTrailingWhitespaces()
 	call cursor(l, c)
 endfun
 
-
-"function! EnhanceCppSyntax()
-"  syn match cppFuncDef "::\~\?\zs\h\w*\ze([^)]*\()\s*\(const\)\?\)\?$"
-"  hi def link cppFuncDef Special
-"endfunction
-
-"autocmd Syntax cpp call EnhanceCppSyntax()
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -229,10 +169,8 @@ endfunction
 function! NumberToggle()
     if &number
         set nonu
-	GitGutterDisable
     else
         set nu
-	GitGutterEnable
     endif
 endfunction
 " }}}
@@ -250,6 +188,7 @@ endfunction
 map <S-B> :cal ListToggle()<cr>
 map <S-N> :cal NumberToggle()<cr>
 map <S-P> :cal PasteToggle()<cr>
+map <S-G> :GitGutterToggle<cr>
 
 " Tabs movement
 map <S-h> :tabprev<CR>
@@ -260,18 +199,6 @@ map <S-T> :tabnew<CR>
 
 
 colors twilight256
-
-"hi SpecialKey ctermfg=234
-"hi Pmenu ctermbg=235 ctermfg=white
-
-"hi LineNr       ctermbg=black          ctermfg=245
-"hi Visual       ctermbg=235            ctermfg=246            cterm=bold
-"hi Search       ctermbg=white          ctermfg=black
-"hi StatusLine   ctermbg=white          ctermfg=black
-"hi SignColumn   ctermbg=black
-
-" Enable show relative numbers
-" call RltvNmbr#RltvNmbrCtrl(1)
 
 " Show cursor line
 set cursorline
