@@ -28,6 +28,7 @@
 	Bundle 'chase/vim-ansible-yaml'
 	Bundle 'vim-scripts/RltvNmbr.vim'
 	Bundle 'Glench/Vim-Jinja2-Syntax'
+	Bundle 'ctrlpvim/ctrlp.vim'
 
 	"...All your other bundles...
 	if iCanHazVundle == 0
