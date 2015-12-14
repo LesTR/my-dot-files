@@ -16,6 +16,9 @@ tmpclone () {
 	git clone $1
 	cd `ls`
 }
+showMyIps () {
+	ifconfig | grep "inet " | grep -v "127.0" | awk '{ print $2 }'
+}
 httpshare () {
 	echo -e "Starting simple HTTP server. Listening on:\n"
 	for ip in $(ifconfig | grep "inet " | grep -v "127.0" | awk '{ print $2 }'); do echo -e "\thttp://${ip}:8000"; done
