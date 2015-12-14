@@ -16,6 +16,9 @@ tmpclone () {
 	git clone $1
 	cd `ls`
 }
+showMyIps () {
+	ifconfig | grep "inet " | grep -v "127.0" | awk '{ print $2 }'
+}
 httpshare () {
 	local port=8000
 	if [[ -n "$1" && -d $1 ]]; then
