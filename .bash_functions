@@ -1,8 +1,8 @@
 # Password generator
 genpasswd() {
-	 local l=$1
-	  [ "$l" == "" ] && l=20
-	   tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
+	local l=$1
+	[ "$l" == "" ] && l=20
+	tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
 
 createTmpDir () {
@@ -17,10 +17,18 @@ tmpclone () {
 	cd `ls`
 }
 httpshare () {
-	echo -e "Starting simple HTTP server. Listening on:\n"
-	for ip in $(ifconfig | grep "inet " | grep -v "127.0" | awk '{ print $2 }'); do echo -e "\thttp://${ip}:8000"; done
+	local port=8000
+	if [[ -n "$1" && -d $1 ]]; then
+		cd $1 || return -1
+	elif [[ "$1" =~ "[0-9]+" ]]; then
+		port=$1
+	fi
+	[ -n "$2" ] && port=$2
+
+	echo -e "Sharing $(pwd)/ via simple HTTP server. Listening on:\n"
+	for ip in $(ifconfig | grep "inet " | grep -v "127.0" | awk '{ print $2 }'); do echo -e "\thttp://${ip}:${port}"; done
 	echo ""
-	python -m SimpleHTTPServer 8000 2>/dev/null
+	python -m SimpleHTTPServer $port 2>/dev/null
 }
 
 myjshon () {
