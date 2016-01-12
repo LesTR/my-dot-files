@@ -29,6 +29,7 @@
 	Bundle 'vim-scripts/RltvNmbr.vim'
 	Bundle 'Glench/Vim-Jinja2-Syntax'
 	Bundle 'ctrlpvim/ctrlp.vim'
+	Bundle 'vim-ruby/vim-ruby'
 
 	"...All your other bundles...
 	if iCanHazVundle == 0

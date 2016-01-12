@@ -24,7 +24,8 @@ export DEBEMAIL='lukas.drbal@socialbakers.com'
 export EDITOR="vim"
 export SUDO_EDITOR=$EDITOR
 
-
+# Stupid ansible developers
+export ANSIBLE_NOCOWS=1
 
 # some colors varibles used in propmt
 export COLOR_WHITE=37
