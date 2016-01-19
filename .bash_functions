@@ -84,3 +84,9 @@ reverseAdiblePing () {
 	fi
 	while true; do ping -t 1 -c 1 -W 20 "$ip"; if [ $? != 0 ] ;then echo -en "\a"; fi;sleep 1;done
 }
+
+workspace() {
+	WORKSPACE=${WORKSPACE:-"${HOME}/data/workspace"}
+	cd "$WORKSPACE/$1"
+}
+complete -W "$(echo `workspace && ls | cut -f 1 -d ' ' | uniq | tr '\n' ' '`;)" workspace
