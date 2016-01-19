@@ -87,6 +87,10 @@ reverseAdiblePing () {
 
 workspace() {
 	WORKSPACE=${WORKSPACE:-"${HOME}/data/workspace"}
+	if [ ! -d "$WORKSPACE" ]; then
+		echo "$WORKSPACE does not exist. Check your \$WORKSPACE variable." >&2
+		return 1
+	fi
 	cd "$WORKSPACE/$1"
 }
 complete -W "$(echo `workspace && ls | cut -f 1 -d ' ' | uniq | tr '\n' ' '`;)" workspace
