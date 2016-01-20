@@ -75,6 +75,7 @@ myProxy () {
 		;;
 	esac
 }
+complete -W "start stop status" myProxy
 
 reverseAdiblePing () {
 	local ip=$1
@@ -94,3 +95,18 @@ workspace() {
 	cd "$WORKSPACE/$1"
 }
 complete -W "$(echo `workspace && ls | cut -f 1 -d ' ' | uniq | tr '\n' ' '`;)" workspace
+
+JAVA_HOME_LIBEXEC=${JAVA_HOME_LIBEXEC:-"/usr/libexec/java_home"}
+java_version() {
+	if [ ! -x "$JAVA_HOME_LIBEXEC" ]; then
+		echo "$JAVA_HOME_LIBEXEC does not exist. Check your \$JAVA_HOME_LIBEXEC variable." >&2
+		return 1
+	fi
+	
+	if [ -z "$1" ]; then
+		"$JAVA_HOME_LIBEXEC" -V
+		return 1
+	fi
+	export JAVA_HOME=$($JAVA_HOME_LIBEXEC -v $1)
+}
+complete -W "$($JAVA_HOME_LIBEXEC -V 2>&1 >/dev/null | grep -v "^Matching Java" | cut -f 1 -d ',' | tr -d ' '| uniq | grep -v "^$"| tr '\n' ' ')" java_version
