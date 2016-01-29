@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# some colors varibles used in propmt
+export COLOR_WHITE=37
+export COLOR_YELLOW=33
+export COLOR_GREEN=32
+export COLOR_RED=31
+export COLOR_BLUE=34

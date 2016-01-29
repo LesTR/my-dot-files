@@ -7,6 +7,8 @@ PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+source ~/.bash_colors
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -26,13 +28,6 @@ export SUDO_EDITOR=$EDITOR
 
 # Stupid ansible developers
 export ANSIBLE_NOCOWS=1
-
-# some colors varibles used in propmt
-export COLOR_WHITE=37
-export COLOR_YELLOW=33
-export COLOR_GREEN=32
-export COLOR_RED=31
-export COLOR_BLUE=34
 
 
 # set variable identifying the chroot you work in (used in the prompt below)
