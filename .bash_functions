@@ -40,7 +40,7 @@ myjshon () {
 
 myProxy () {
 	if [ -z "$my_proxy" ]; then
-		echo "Bad configuration, $my_proxy is missing"
+		echo "Bad configuration, \$my_proxy is missing"
 		return -1
 	fi
 	case "$1" in
@@ -94,7 +94,9 @@ workspace() {
 	fi
 	cd "$WORKSPACE/$1"
 }
-complete -W "$(echo `workspace && ls | cut -f 1 -d ' ' | uniq | tr '\n' ' '`;)" workspace
+if [ -n "$WORKSPACE" ]; then
+	complete -W "$(echo `workspace && ls | cut -f 1 -d ' ' | uniq | tr '\n' ' '`;)" workspace
+fi
 
 JAVA_HOME_LIBEXEC=${JAVA_HOME_LIBEXEC:-"/usr/libexec/java_home"}
 java_version() {
