@@ -21,12 +21,12 @@
 	browse = instaweb -d webrick -p 8888
 	nt = ls-files -o --exclude-standard
 	ign = ls-files -o -i --exclude-standard
+	tags = tag -l
+	gerritMasterPush = push origin HEAD:refs/for/master
 	# Typos ...
 	dif = diff
 	di = diff
 	dff = diff
-	tags = tag -l
-	gerritMasterPush = push origin HEAD:refs/for/master
 [branch.master]
   mergeoptions = log
 [color]
