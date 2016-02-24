@@ -94,7 +94,7 @@ workspace() {
 	fi
 	cd "$WORKSPACE/$1"
 }
-if [ -n "$WORKSPACE" ]; then
+if ([ -n "$WORKSPACE" ]) || ([ -d "${HOME}/data/workspace" ]); then
 	complete -W "$(echo `workspace && ls | cut -f 1 -d ' ' | uniq | tr '\n' ' '`;)" workspace
 fi
 
