@@ -9,6 +9,8 @@
 	a = add
 	s  = status -sb
 	c  = checkout --
+	f  = fetch
+	p  = pull --rebase
 	br = branch
 	bra = branch --all
 	co = checkout
@@ -26,6 +28,7 @@
 	# Typos ...
 	dif = diff
 	di = diff
+	d  = diff
 	dff = diff
 [branch.master]
   mergeoptions = log
