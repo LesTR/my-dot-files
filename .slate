@@ -1,6 +1,9 @@
+# Configs
 config defaultToCurrentScreen true
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
+config secondsBetweenRepeat 0.1
+config checkDefaultsOnLoad true
 
 # Resize and move to sector
 bind h:ctrl;cmd		push left  bar-resize:screenSizeX/2
@@ -19,9 +22,16 @@ bind left:ctrl;alt;cmd  throw left  resize
 bind up:ctrl;alt;cmd    throw up    resize
 bind down:ctrl;alt;cmd  throw down  resize
 
+# Throw Bindings (no resize)
 bind l:ctrl;alt;cmd	throw right
 bind h:ctrl;alt;cmd	throw left
 bind k:ctrl;alt;cmd	throw up
 bind j:ctrl;alt;cmd	throw down
 
-bind esc:cmd hint
+# Window Hints
+bind esc:cmd hint QWERTYUIOP
+
+bind tab:cmd switch
+
+# Grid
+bind esc:ctrl grid
