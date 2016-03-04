@@ -29,7 +29,7 @@ bind k:ctrl;alt;cmd	throw up
 bind j:ctrl;alt;cmd	throw down
 
 # Window Hints
-bind esc:cmd hint QWERTYUIOP
+bind esc:cmd hint YUIOPQWERT
 
 bind tab:cmd switch
 

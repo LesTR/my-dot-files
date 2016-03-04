@@ -112,3 +112,7 @@ java_version() {
 	export JAVA_HOME=$($JAVA_HOME_LIBEXEC -v $1)
 }
 complete -W "$($JAVA_HOME_LIBEXEC -V 2>&1 >/dev/null | grep -v "^Matching Java" | cut -f 1 -d ',' | tr -d ' '| uniq | grep -v "^$"| tr '\n' ' ')" java_version
+
+update_env() {
+	source ~/.bash_profile
+}
