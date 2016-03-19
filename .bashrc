@@ -6,8 +6,9 @@ PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
-
-source ~/.bash_colors
+if [ -f "~/.bash_colors" ]; then
+	source ~/.bash_colors
+fi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -71,7 +72,7 @@ function parse_git_ci {
 		LONG_GIT_STATUS=`git status 2> /dev/null`
 		BRANCH=$(parse_git_branch)
 		if [ -z "$BRANCH" ]; then
-			 BRANCH="no branch"
+			BRANCH="no branch"
 		fi
 
 
@@ -99,16 +100,16 @@ function prompt_right() {
 
 
 function prompt_left() {
-	 if [ "${TERM}" == "screen" ]; then
+	if [ "${TERM}" == "screen" ]; then
 		PR_COLOR=$COLOR_YELLOW
-	 else
+	else
 		PR_COLOR=$COLOR_RED
-	 fi
-	 if [ "$UID" -eq 0 ]; then
+	fi
+	if [ "$UID" -eq 0 ]; then
 		U_COLOR=$COLOR_RED
 		H_COLOR=$COLOR_YELLOW
 		PR="<|>"
-	 else
+	else
 		U_COLOR=$COLOR_YELLOW
 		H_COLOR=$COLOR_GREEN
 		PR="\xe2\x88\x91"
@@ -132,66 +133,58 @@ PROMPT_DIRTRIM=3
 if [ "$color_prompt" = yes ]; then
 	PS1X=$(prompt)
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
+	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	;;
 *)
-    ;;
+	;;
 esac
 
 # enable color support of ls and also add handy aliases
-
-_DIRCOLORS=$(which dircolors)
-
-if [ -x "${_DIRCOLORS}" ]; then
-    test -r ~/.dircolors && eval "$($_DIRCOLORS -b ~/.dircolors)" || eval "$($_DIRCOLORS -b)"
+if [ -x "$(which dircolors &> /dev/null)" ]; then
+	test -r ~/.dircolors && eval "$($_DIRCOLORS -b ~/.dircolors)" || eval "$($_DIRCOLORS -b)"
 fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+	source ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+	source /etc/bash_completion
 fi
-
+# file for custom bash completition
 if [ -f ~/.bash_autocomplete ]; then
-    . ~/.bash_autocomplete
+	source ~/.bash_autocomplete
 fi
-
+# custom bash functions
 if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
+	source  ~/.bash_functions
 fi
+# i hate ruby!
+[ -d "$HOME/.rvm" ] && PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 
-if [[ -d $HOME/.rvm ]]; then
-	PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-fi
-
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
-
+[ -s $HOME/.nvm/nvm.sh ] && source $HOME/.nvm/nvm.sh # This loads NVM
 
 #source fucking google API keys for chromium
-if [ -f ~/.chromium.env ]; then
-	. ~/.chromium.env
-fi
+[ -f ~/.chromium.env ] && source ~/.chromium.env
 
+# MacOSx stuff
 if $(which brew &> /dev/null); then
 	if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    	. $(brew --prefix)/etc/bash_completion
+		. $(brew --prefix)/etc/bash_completion
 	fi
 	if [ -f $(brew --prefix nvm)/nvm.sh ]; then
 		. $(brew --prefix nvm)/nvm.sh

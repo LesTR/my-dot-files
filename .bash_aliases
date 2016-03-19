@@ -1,5 +1,6 @@
 alias bell='echo -en "\a"'
 alias cd..='cd ..'
+alias ..='cd ..'
 
 
 # some more ls aliases
