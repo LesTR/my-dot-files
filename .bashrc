@@ -6,7 +6,7 @@ PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
-if [ -f "~/.bash_colors" ]; then
+if [ -f ~/.bash_colors ]; then
 	source ~/.bash_colors
 fi
 
