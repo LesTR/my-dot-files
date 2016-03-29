@@ -98,6 +98,18 @@ if ([ -n "$WORKSPACE" ]) || ([ -d "${HOME}/data/workspace" ]); then
 	complete -W "$(echo `workspace && ls | cut -f 1 -d ' ' | uniq | tr '\n' ' '`;)" workspace
 fi
 
+sources() {
+	PROJECT_SOURCES=${PROJECT_SOURCES:-"${HOME}/data/sources"}
+	if [ ! -d "$PROJECT_SOURCES" ]; then
+		echo "$PROJECT_SOURCES does not exist. Check your \$PROJECT_SOURCES variable." >&2
+		return 1
+	fi
+	cd "$PROJECT_SOURCES/$1"
+}
+if ([ -n "$PROJECT_SOURCES" ]) || ([ -d "${HOME}/data/sources" ]); then
+	complete -W "$(echo `sources && ls | cut -f 1 -d ' ' | uniq | tr '\n' ' '`;)" sources
+fi
+
 JAVA_HOME_LIBEXEC=${JAVA_HOME_LIBEXEC:-"/usr/libexec/java_home"}
 java_version() {
 	if [ ! -x "$JAVA_HOME_LIBEXEC" ]; then
