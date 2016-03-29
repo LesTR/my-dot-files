@@ -33,13 +33,13 @@ export ANSIBLE_NOCOWS=1
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
 	xterm-256color) color_prompt=yes;;
-    xterm-color) color_prompt=yes;;
+	xterm-color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -48,13 +48,13 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		# We have color support; assume it's compliant with Ecma-48
+		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+		# a case would tend to support setf rather than setaf.)
+		color_prompt=yes
+	else
+		color_prompt=
     fi
 fi
 
@@ -75,7 +75,13 @@ function parse_git_ci {
 			BRANCH="no branch"
 		fi
 
-
+		#for git-flow prefixes i want just first character
+		local gitFlowBranchPrefixes=(feature bugfix hotfix release)
+		if [[ "${gitFlowBranchPrefixes[@]}" =~ $(echo $BRANCH | cut -d "/" -f 1) ]]; then
+			local pre=$(echo ${BRANCH:0:1}|awk '{print toupper($0)}')
+			local issue=$(echo $BRANCH | cut -d "/" -f 2)
+			BRANCH="${pre}/${issue}"
+		fi
 		if [ -n "$(echo $LONG_GIT_STATUS | egrep -ie 'nothing( added)? to commit')" ]; then
 			BRANCH_COLOR=$COLOR_GREEN
 		else 
