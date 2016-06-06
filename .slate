@@ -31,7 +31,7 @@ bind j:ctrl;alt;cmd	throw down
 # Window Hints
 bind esc:cmd hint YUIOPQWERT
 
-bind tab:cmd switch
+#bind tab:cmd switch
 
 # Grid
 bind esc:ctrl grid
