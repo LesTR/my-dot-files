@@ -60,15 +60,11 @@ fi
 
 
 parse_git_branch() { 
-	_pwd=`pwd`
-	if $(which git &> /dev/null) && test -d "$_pwd/.git" ; then
-		git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/' | tr -d " "
-	fi
+	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/' | tr -d " "
 }
 function parse_git_ci {
 	if ! $(which git &> /dev/null); then return; fi
-	if ! test -d "`pwd`/.git"; then return; fi
-	if git rev-parse --git-dir &> /dev/null; then
+	if git rev-parse --is-inside-work-tree &> /dev/null; then
 		LONG_GIT_STATUS=`git status 2> /dev/null`
 		BRANCH=$(parse_git_branch)
 		if [ -z "$BRANCH" ]; then
