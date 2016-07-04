@@ -19,6 +19,7 @@
 	Plugin 'tpope/vim-fugitive'
 	Plugin 'scrooloose/nerdtree'
 	Plugin 'vim-scripts/twilight256.vim'
+	Plugin 'altercation/vim-colors-solarized'
 "	Plugin 'wincent/Command-T'
 "	Plugin 'terryma/vim-multiple-cursors'
 	Bundle 'derekwyatt/vim-scala'
@@ -200,7 +201,9 @@ map <S-l> :tabnext<CR>
 map <S-T> :tabnew<CR>
 
 
-colors twilight256
+"colors twilight256
+let g:solarized_termcolors=256
+colorscheme solarized
 
 " Show cursor line
 set cursorline
