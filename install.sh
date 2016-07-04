@@ -15,6 +15,7 @@ installBash(){
 	_install ".bashrc .bash_aliases .bash_functions .bash_colors" "bash"
 	_install ".screenrc" "screen"
 	_install ".inputrc" "inputrc"
+	_install ".tmux.conf" "tmux"
 }
 installGit(){
 	_install ".gitconfig" "git"	
