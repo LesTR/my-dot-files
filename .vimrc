@@ -201,9 +201,9 @@ map <S-l> :tabnext<CR>
 map <S-T> :tabnew<CR>
 
 
-"colors twilight256
+colors twilight256
 let g:solarized_termcolors=256
-colorscheme solarized
+"colorscheme solarized
 
 " Show cursor line
 set cursorline

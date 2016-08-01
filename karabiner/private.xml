@@ -91,6 +91,35 @@
 			</autogen>
 		</item>
 		<item>
+			<name>Safari</name>
+			<identifier>private.smart_tabs_browsing_safari</identifier>
+			<only>SAFARI</only>
+			<autogen>
+				__KeyToKey__
+				KeyCode::H, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::TAB, ModifierFlag::CONTROL_L|ModifierFlag::SHIFT_L|ModifierFlag::NONE
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::L, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::TAB, ModifierFlag::CONTROL_L|ModifierFlag::NONE
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::J, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::KEY_1, ModifierFlag::COMMAND_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::K, ModifierFlag::COMMAND_L|ModifierFlag::FN, KeyCode::KEY_9, ModifierFlag::COMMAND_L
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::T, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::T, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+			</autogen>
+			<autogen>
+				__KeyToKey__
+				KeyCode::W, ModifierFlag::CONTROL_L|ModifierFlag::NONE, KeyCode::W, ModifierFlag::COMMAND_L|ModifierFlag::NONE
+			</autogen>
+		</item>
+		<item>
 			<name>Iterm2</name>
 			<identifier>private.smart_tabs_browsing_iterm2</identifier>
 			<only>TERMINAL</only>
