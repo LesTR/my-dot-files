@@ -125,6 +125,10 @@ java_version() {
 }
 complete -W "$($JAVA_HOME_LIBEXEC -V 2>&1 >/dev/null | grep -v "^Matching Java" | cut -f 1 -d ',' | tr -d ' '| uniq | grep -v "^$"| tr '\n' ' ')" java_version
 
+sshAuthClean() {
+	ssh-keygen -R $1
+}
+
 update_env() {
 	source ~/.bash_profile
 }
