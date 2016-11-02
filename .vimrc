@@ -31,6 +31,7 @@
 	Bundle 'Glench/Vim-Jinja2-Syntax'
 	Bundle 'ctrlpvim/ctrlp.vim'
 	Bundle 'vim-ruby/vim-ruby'
+	Plugin 'dracula/vim'
 
 	"...All your other bundles...
 	if iCanHazVundle == 0
@@ -201,7 +202,8 @@ map <S-l> :tabnext<CR>
 map <S-T> :tabnew<CR>
 
 
-colors twilight256
+"colors twilight256
+color dracula
 let g:solarized_termcolors=256
 "colorscheme solarized
 
