@@ -127,8 +127,9 @@ complete -W "$($JAVA_HOME_LIBEXEC -V 2>&1 >/dev/null | grep -v "^Matching Java" 
 
 sshAuthClean() {
 	ssh-keygen -R $1
+	ssh $@
 }
 
-update_env() {
+reload_env() {
 	source ~/.bash_profile
 }

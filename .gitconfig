@@ -9,7 +9,7 @@
 	a = add
 	s  = status -sb
 	c  = checkout --
-	f  = fetch
+	f  = fetch --prune
 	p  = pull --rebase
 	br = branch
 	bra = branch --all
