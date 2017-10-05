@@ -5,7 +5,7 @@
 	signingkey = rsa4096/978C64BA64A4D388
 [alias]
 	cl = log --graph --pretty=format:'%h%d %s (%an)'
-	ci = commit
+	ci = commit -S
 	st = status
 	a = add
 	s  = status -sb
@@ -32,31 +32,35 @@
 	d  = diff
 	dff = diff
 [branch.master]
-  mergeoptions = log
+	mergeoptions = log
 [color]
-  grep = auto
-  branch = auto
-  diff = auto
-  status = auto
+	grep = auto
+	branch = auto
+	diff = auto
+	status = auto
 [color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [color "status"]
-  added = yellow
-  changed = green
+	added = yellow
+	changed = green
 [difftool]
-  prompt = false
+	prompt = false
 [diff]
-  tool = vimdiff
+	tool = vimdiff
 [merge]
-  tool = vimdiff
+	tool = vimdiff
 [push]
-  default = current
+	default = current
 [help]
 	autocorrect = 1
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
