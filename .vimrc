@@ -32,6 +32,8 @@
 	Bundle 'ctrlpvim/ctrlp.vim'
 	Bundle 'vim-ruby/vim-ruby'
 	Plugin 'dracula/vim'
+	Plugin 'pearofducks/ansible-vim'
+	Bundle 'vim-syntastic/syntastic'
 
 	"...All your other bundles...
 	if iCanHazVundle == 0
@@ -216,3 +218,20 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 let g:ctrlp_show_hidden = 1
+
+" syntactic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '🚫'
+map <LEADER>s :SyntasticToggleMode<CR>
+"let g:syntastic_ansible_checkers = ['syntastic-checkers-ansible']

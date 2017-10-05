@@ -116,7 +116,6 @@ java_version() {
 		echo "$JAVA_HOME_LIBEXEC does not exist. Check your \$JAVA_HOME_LIBEXEC variable." >&2
 		return 1
 	fi
-	
 	if [ -z "$1" ]; then
 		"$JAVA_HOME_LIBEXEC" -V
 		return 1
