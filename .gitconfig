@@ -2,7 +2,7 @@
 	# you probably want to change this bit
 	name = Lukas Drbal
 	email = lukas.drbal@merck.com
-	signingkey = 3C31674F9055A022D84797A2978C64BA64A4D388
+	signingkey = BE292972C6AA72AC
 [alias]
 	cl = log --graph --pretty=format:'%h%d %s (%an)'
 	ci = commit -S
