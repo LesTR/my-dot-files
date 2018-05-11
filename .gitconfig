@@ -31,6 +31,7 @@
 	di = diff
 	d  = diff
 	dff = diff
+	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
 [branch.master]
 	mergeoptions = log
 [color]
