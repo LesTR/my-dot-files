@@ -14,7 +14,7 @@ createTmpDir () {
 tmpclone () {
 	createTmpDir
 	git clone $1
-	cd `ls`
+	cd $(ls)
 }
 showMyIps () {
 	ifconfig | grep "inet " | grep -v "127.0" | awk '{ print $2 }'

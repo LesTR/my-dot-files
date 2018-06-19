@@ -4,7 +4,7 @@ alias ..='cd ..'
 
 
 # some more ls aliases
-alias ls='ls --color=auto' 
+alias ls='ls --color=auto'
 alias ll='ls -l'
 alias la='ls -Al'
 alias l='ls -ahCF'
@@ -19,20 +19,20 @@ alias grep='grep --color=auto'
 # some colorized commands
 if $(which grc &> /dev/null)
 then
-	alias colourify="grc -es --colour=auto"
-	alias ping='colourify ping'
-	alias ping6='colourify ping6'
-	alias make='colourify make'
-	alias gcc='colourify gcc'
-	alias g++='colourify g++'
+    alias colourify="grc -es --colour=auto"
+    alias ping='colourify ping'
+    alias ping6='colourify ping6'
+    alias make='colourify make'
+    alias gcc='colourify gcc'
+    alias g++='colourify g++'
 fi
 
 if $(which xsel &> /dev/null); then
-	alias pbcopy='xsel -b'
+    alias pbcopy='xsel -b'
 fi
 
 if ! $(which jshon &> /dev/null); then
-	alias jshon='myjshon'
+    alias jshon='myjshon'
 else
-	unalias jshon &>/dev/null
+    unalias jshon &>/dev/null
 fi

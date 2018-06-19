@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-PATH=/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/games:/usr/games:$HOME/bin
+PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/games:/usr/games:$HOME/bin
 #PATH="/usr/local/opt/openssl/bin:$PATH"
 
 # If not running interactively, don't do anything
@@ -178,9 +178,10 @@ if [ -f ~/.bash_functions ]; then
 fi
 # i hate ruby!
 [ -d "$HOME/.rvm" ] && PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
-#TODO: fix this shit
-export NVM_DIR="$HOME/.nvm"
-source "/usr/local/opt/nvm/nvm.sh"
+if [ -f "/usr/local/opt/nvm/nvm.sh" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    source "/usr/local/opt/nvm/nvm.sh"
+fi
 
 #source fucking google API keys for chromium
 [ -f ~/.chromium.env ] && source ~/.chromium.env
