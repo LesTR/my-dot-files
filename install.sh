@@ -50,7 +50,7 @@ case "$1" in
 	"mac")
 		bash $0 "dev-linux"
 		installSlate
-		installKarabiner
+#		installKarabiner
 	;;
 	"linux")
 		bash $0 "dev-linux"

@@ -2,10 +2,11 @@ alias bell='echo -en "\a"'
 alias cd..='cd ..'
 alias ..='cd ..'
 
+alias mc="mc --nosubshell"
 
 # some more ls aliases
 alias ls='ls --color=auto'
-alias ll='ls -l'
+alias ll='ls -lh'
 alias la='ls -Al'
 alias l='ls -ahCF'
 
@@ -27,6 +28,8 @@ then
     alias g++='colourify g++'
 fi
 
+alias ducks='du -cks * | sort -rn'
+
 if $(which xsel &> /dev/null); then
     alias pbcopy='xsel -b'
 fi
@@ -36,3 +39,16 @@ if ! $(which jshon &> /dev/null); then
 else
     unalias jshon &>/dev/null
 fi
+
+if [[ $OSTYPE == darwin* ]]; then
+    alias flushdns='dscacheutil -flushcache'
+fi
+
+alias kube='kubectl'
+alias k='kubectl'
+alias kctx='kubectx'
+
+# completion for aliases (use `complete -p command` to resolve completition for command)
+complete -o default -o nospace -F __start_kubectl kube
+complete -o default -o nospace -F __start_kubectl k
+complete -o default -o nospace -F _kube_contexts kctx

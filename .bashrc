@@ -2,7 +2,25 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+if [[ $- != *i* ]] ; then
+    # Shell is non-interactive.  Be done now!
+    return
+fi
+
 PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/games:/usr/games:$HOME/bin
+#scala 2.11
+PATH="/usr/local/opt/scala@2.11/bin:$PATH"
+#scala 2.12
+#PATH="/usr/local/opt/scala@2.12/bin:$PATH"
+# sbt 0.13
+PATH="/usr/local/opt/sbt@0.13/bin:$PATH"
+
+
+#maven 3.5
+#export PATH="/usr/local/opt/maven@3.5/bin:$PATH"
+# python 3.7
+export PATH="/usr/local/opt/python@3.7/bin:$PATH"
+
 #PATH="/usr/local/opt/openssl/bin:$PATH"
 
 # If not running interactively, don't do anything
@@ -24,13 +42,16 @@ HISTFILESIZE=2000
 
 export LC_CTYPE="en_US.UTF-8"
 export DEBFULLNAME='Lukas Drbal'
-export DEBEMAIL='lukas.drbal@socialbakers.com'
+export DEBEMAIL='lukas.drbal@gmail.com'
 export EDITOR="vim"
 export SUDO_EDITOR=$EDITOR
 export GPG_TTY=$(tty)
 
 # Stupid ansible developers
 export ANSIBLE_NOCOWS=1
+
+# Gcloud python settings
+export CLOUDSDK_PYTHON=python3
 
 
 # set variable identifying the chroot you work in (used in the prompt below)
@@ -180,7 +201,8 @@ fi
 [ -d "$HOME/.rvm" ] && PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 if [ -f "/usr/local/opt/nvm/nvm.sh" ]; then
     export NVM_DIR="$HOME/.nvm"
-    source "/usr/local/opt/nvm/nvm.sh"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && source "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 fi
 
 #source fucking google API keys for chromium

@@ -32,6 +32,7 @@
 	d  = diff
 	dff = diff
 	cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+	ls-subtrees = !"git log | grep git-subtree-dir | awk '{ print $2 }'"
 [branch.master]
 	mergeoptions = log
 [color]
@@ -65,3 +66,10 @@
 	gpgsign = true
 [gpg]
 	program = gpg
+[core]
+	autocrlf = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

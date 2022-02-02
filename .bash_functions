@@ -31,7 +31,7 @@ httpshare () {
 	echo -e "Sharing $(pwd)/ via simple HTTP server. Listening on:\n"
 	for ip in $(ifconfig | grep "inet " | grep -v "127.0" | awk '{ print $2 }'); do echo -e "\thttp://${ip}:${port}"; done
 	echo ""
-	python -m SimpleHTTPServer $port 2>/dev/null
+	python3 -m http.server $port 2>/dev/null
 }
 
 myjshon () {
@@ -131,4 +131,21 @@ sshAuthClean() {
 
 reload_env() {
 	source ~/.bash_profile
+}
+
+function kubectlgetall {
+  for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
+    echo "Resource:" $i
+    kubectl -n ${1} get --ignore-not-found ${i}
+  done
+}
+
+listening() {
+    if [ $# -eq 0 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P
+    elif [ $# -eq 1 ]; then
+        sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+    else
+        echo "Usage: listening [pattern]"
+    fi
 }
