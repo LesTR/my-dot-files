@@ -122,7 +122,7 @@ java_version() {
 	fi
 	export JAVA_HOME=$($JAVA_HOME_LIBEXEC -v $1)
 }
-complete -W "$($JAVA_HOME_LIBEXEC -V 2>&1 >/dev/null | grep -v "^Matching Java" | cut -f 1 -d ',' | tr -d ' '| uniq | grep -v "^$"| tr '\n' ' ')" java_version
+complete -W "$($JAVA_HOME_LIBEXEC -V 2>&1 >/dev/null | sed -E 's/\s+([0-9]+\.[0-9]+\.[0-9_]+).*/\1/g' | grep '^[0-9]' | grep -v "^$"| tr '\n' ' ')" java_version
 
 sshAuthClean() {
 	ssh-keygen -R $1
@@ -134,18 +134,18 @@ reload_env() {
 }
 
 function kubectlgetall {
-  for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
-    echo "Resource:" $i
-    kubectl -n ${1} get --ignore-not-found ${i}
-  done
+	for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
+		echo "Resource:" $i
+		kubectl -n ${1} get --ignore-not-found ${i}
+	done
 }
 
 listening() {
-    if [ $# -eq 0 ]; then
-        sudo lsof -iTCP -sTCP:LISTEN -n -P
-    elif [ $# -eq 1 ]; then
-        sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
-    else
-        echo "Usage: listening [pattern]"
-    fi
+	if [ $# -eq 0 ]; then
+		sudo lsof -iTCP -sTCP:LISTEN -n -P
+	elif [ $# -eq 1 ]; then
+		sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+	else
+		echo "Usage: listening [pattern]"
+	fi
 }
