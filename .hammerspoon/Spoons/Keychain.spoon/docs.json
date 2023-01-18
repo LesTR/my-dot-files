@@ -1,0 +1,171 @@
+[
+  {
+    "Command": [],
+    "Constant": [],
+    "Constructor": [],
+    "Deprecated": [
+      {
+        "def": "Keychain:login_keychain(name)",
+        "desc": "Retrieve an item from the Login Keychain, returns nil if not found.",
+        "doc": "Retrieve an item from the Login Keychain, returns nil if not found.\n\nParameters:\n * name - The name of the item in the Login Keychain you want to retrieve\n\nNotes:\n * Use getItem() instead.",
+        "file": "Source/Keychain.spoon//init.lua",
+        "lineno": "64",
+        "name": "login_keychain",
+        "notes": [
+          " * Use getItem() instead."
+        ],
+        "parameters": [
+          " * name - The name of the item in the Login Keychain you want to retrieve"
+        ],
+        "signature": "Keychain:login_keychain(name)",
+        "stripped_doc": "",
+        "type": "Deprecated"
+      }
+    ],
+    "Field": [],
+    "Function": [],
+    "Method": [
+      {
+        "def": "Keychain:addItem(options)",
+        "desc": "Add generic password to keychain.",
+        "doc": "Add generic password to keychain.\n\nParameters:\n * options is a table with values for what keys to try locate with.\n  * password - the password\n  * account - account name (required)\n  * creator - creator, must be 4 characters\n  * type - type, must be 4 characters\n  * kind - kind of item\n  * comment - comment \n  * label - label (defaults to service name)\n  * service - service name (required)",
+        "file": "Source/Keychain.spoon//init.lua",
+        "lineno": "139",
+        "name": "addItem",
+        "parameters": [
+          " * options is a table with values for what keys to try locate with.",
+          "  * password - the password",
+          "  * account - account name (required)",
+          "  * creator - creator, must be 4 characters",
+          "  * type - type, must be 4 characters",
+          "  * kind - kind of item",
+          "  * comment - comment ",
+          "  * label - label (defaults to service name)",
+          "  * service - service name (required)"
+        ],
+        "signature": "Keychain:addItem(options)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "Keychain:getItem(options)",
+        "desc": "Retrieve an item from the Login Keychain. Return nil if not found and otherwise a table with found data.",
+        "doc": "Retrieve an item from the Login Keychain. Return nil if not found and otherwise a table with found data.\n\nParameters:\n * options is a table with values for what keys to try locate with.\n  * account - account name\n  * creator - creator, must be 4 characters\n  * type - type, must be 4 characters\n  * kind - kind of item\n  * comment - comment \n  * label - label (defaults to service name)\n  * service - service name\n\nNotes:\n * If multiple possibles matches just the first one is found.",
+        "file": "Source/Keychain.spoon//init.lua",
+        "lineno": "82",
+        "name": "getItem",
+        "notes": [
+          " * If multiple possibles matches just the first one is found."
+        ],
+        "parameters": [
+          " * options is a table with values for what keys to try locate with.",
+          "  * account - account name",
+          "  * creator - creator, must be 4 characters",
+          "  * type - type, must be 4 characters",
+          "  * kind - kind of item",
+          "  * comment - comment ",
+          "  * label - label (defaults to service name)",
+          "  * service - service name"
+        ],
+        "signature": "Keychain:getItem(options)",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "Variable": [
+      {
+        "def": "Keychain.logger",
+        "desc": "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "doc": "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "file": "Source/Keychain.spoon//init.lua",
+        "lineno": "25",
+        "name": "logger",
+        "signature": "Keychain.logger",
+        "stripped_doc": "",
+        "type": "Variable"
+      }
+    ],
+    "desc": "Get and Add items from Keychain. Provides no hotkeys and maintains no state",
+    "doc": "Get and Add items from Keychain. Provides no hotkeys and maintains no state\n\nExample usage:\n```lua\n   spoon.Keychain.addItem{service=\"mynas.local\", account=\"myname\", password=\"secret\"}\n   item = spoon.Keychain.getItem{service=\"mynas.local\", account=\"myname\"}\n   print(item.password)\n```\n\nTyler Thrailkill <tyler.b.thrailkill@gmail.com>\n\nhttps://github.com/snowe2010",
+    "items": [
+      {
+        "def": "Keychain:addItem(options)",
+        "desc": "Add generic password to keychain.",
+        "doc": "Add generic password to keychain.\n\nParameters:\n * options is a table with values for what keys to try locate with.\n  * password - the password\n  * account - account name (required)\n  * creator - creator, must be 4 characters\n  * type - type, must be 4 characters\n  * kind - kind of item\n  * comment - comment \n  * label - label (defaults to service name)\n  * service - service name (required)",
+        "file": "Source/Keychain.spoon//init.lua",
+        "lineno": "139",
+        "name": "addItem",
+        "parameters": [
+          " * options is a table with values for what keys to try locate with.",
+          "  * password - the password",
+          "  * account - account name (required)",
+          "  * creator - creator, must be 4 characters",
+          "  * type - type, must be 4 characters",
+          "  * kind - kind of item",
+          "  * comment - comment ",
+          "  * label - label (defaults to service name)",
+          "  * service - service name (required)"
+        ],
+        "signature": "Keychain:addItem(options)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "Keychain:getItem(options)",
+        "desc": "Retrieve an item from the Login Keychain. Return nil if not found and otherwise a table with found data.",
+        "doc": "Retrieve an item from the Login Keychain. Return nil if not found and otherwise a table with found data.\n\nParameters:\n * options is a table with values for what keys to try locate with.\n  * account - account name\n  * creator - creator, must be 4 characters\n  * type - type, must be 4 characters\n  * kind - kind of item\n  * comment - comment \n  * label - label (defaults to service name)\n  * service - service name\n\nNotes:\n * If multiple possibles matches just the first one is found.",
+        "file": "Source/Keychain.spoon//init.lua",
+        "lineno": "82",
+        "name": "getItem",
+        "notes": [
+          " * If multiple possibles matches just the first one is found."
+        ],
+        "parameters": [
+          " * options is a table with values for what keys to try locate with.",
+          "  * account - account name",
+          "  * creator - creator, must be 4 characters",
+          "  * type - type, must be 4 characters",
+          "  * kind - kind of item",
+          "  * comment - comment ",
+          "  * label - label (defaults to service name)",
+          "  * service - service name"
+        ],
+        "signature": "Keychain:getItem(options)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "Keychain.logger",
+        "desc": "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "doc": "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "file": "Source/Keychain.spoon//init.lua",
+        "lineno": "25",
+        "name": "logger",
+        "signature": "Keychain.logger",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "Keychain:login_keychain(name)",
+        "desc": "Retrieve an item from the Login Keychain, returns nil if not found.",
+        "doc": "Retrieve an item from the Login Keychain, returns nil if not found.\n\nParameters:\n * name - The name of the item in the Login Keychain you want to retrieve\n\nNotes:\n * Use getItem() instead.",
+        "file": "Source/Keychain.spoon//init.lua",
+        "lineno": "64",
+        "name": "login_keychain",
+        "notes": [
+          " * Use getItem() instead."
+        ],
+        "parameters": [
+          " * name - The name of the item in the Login Keychain you want to retrieve"
+        ],
+        "signature": "Keychain:login_keychain(name)",
+        "stripped_doc": "",
+        "type": "Deprecated"
+      }
+    ],
+    "name": "Keychain",
+    "stripped_doc": "\nExample usage:\n```lua\n   spoon.Keychain.addItem{service=\"mynas.local\", account=\"myname\", password=\"secret\"}\n   item = spoon.Keychain.getItem{service=\"mynas.local\", account=\"myname\"}\n   print(item.password)\n```\n\nTyler Thrailkill <tyler.b.thrailkill@gmail.com>\n\nhttps://github.com/snowe2010",
+    "submodules": [],
+    "type": "Module"
+  }
+]
