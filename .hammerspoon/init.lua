@@ -46,4 +46,5 @@ alert.show(table.concat(buf))
 require 'vi-keys'
 require 'showmousepointer'
 require 'rounded-corners'
+require 'window-management'
 --require 'test'
