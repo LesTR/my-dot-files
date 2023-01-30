@@ -68,10 +68,12 @@
 	program = gpg
 [core]
 	autocrlf = false
-        ignorecase = false
-        excludesfile = ~/.gitignore_global
+	ignorecase = false
+	excludesfile = ~/.gitignore_global
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential]
+	helper = osxkeychain
