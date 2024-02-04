@@ -29,6 +29,7 @@ then
 fi
 
 alias ducks='du -cks * | sort -rn'
+alias brew-upgrade='brew update && brew upgrade && brew cleanup'
 
 if $(which xsel &> /dev/null); then
     alias pbcopy='xsel -b'
@@ -49,6 +50,7 @@ alias k='kubectl'
 alias kctx='kubectx'
 
 # completion for aliases (use `complete -p command` to resolve completition for command)
-complete -o default -o nospace -F __start_kubectl kube
-complete -o default -o nospace -F __start_kubectl k
-complete -o default -o nospace -F _kube_contexts kctx
+complete -o default -F __start_kubectl kube
+complete -o default -F __start_kubectl k
+#complete -o default -o nospace -F __start_kubectl k
+complete -o default -F _kube_contexts kctx

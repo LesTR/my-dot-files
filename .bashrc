@@ -7,21 +7,19 @@ if [[ $- != *i* ]] ; then
     return
 fi
 
-PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/games:/usr/games:$HOME/bin
-#scala 2.11
-PATH="/usr/local/opt/scala@2.11/bin:$PATH"
-#scala 2.12
-#PATH="/usr/local/opt/scala@2.12/bin:$PATH"
-# sbt 0.13
-PATH="/usr/local/opt/sbt@0.13/bin:$PATH"
+PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/games:/usr/games:$HOME/bin
 
-
-#maven 3.5
-#export PATH="/usr/local/opt/maven@3.5/bin:$PATH"
-# python 3.7
-export PATH="/usr/local/opt/python@3.7/bin:$PATH"
-
-#PATH="/usr/local/opt/openssl/bin:$PATH"
+#Use gnu tools from homebrew
+if $(which brew &> /dev/null); then
+  BREW_PREFIX=$(brew --prefix)
+  PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
+  PATH="${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
+  PATH="${BREW_PREFIX}/opt/make/libexec/gnubin/:${PATH}"
+  PATH="${BREW_PREFIX}/opt/findutils/libexec/gnubin/:${PATH}"
+  PATH="${BREW_PREFIX}/opt/grep/libexec/gnubin/:${PATH}"
+  PATH="${BREW_PREFIX}/opt/binutils/bin:$PATH"
+  PATH="${BREW_PREFIX}/opt/gawk/libexec/gnubin:$PATH"
+fi
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -100,17 +98,17 @@ function parse_git_ci {
             local issue=$(echo $BRANCH | cut -d "/" -f 2)
             BRANCH="${pre}/${issue}"
         fi
-        if [ -n "$(echo $LONG_GIT_STATUS | egrep -ie 'nothing( added)? to commit')" ]; then
+        if [ -n "$(echo $LONG_GIT_STATUS | ggrep -iE  'nothing( added)? to commit')" ]; then
             BRANCH_COLOR=$COLOR_GREEN
         else
             BRANCH_COLOR=$COLOR_RED
         fi
         NEED_PUSH=""
-        if [ -n "$(echo $LONG_GIT_STATUS | egrep -ie 'Your branch is ahead of')" ]; then
+        if [ -n "$(echo $LONG_GIT_STATUS | ggrep -iE 'Your branch is ahead of')" ]; then
             NEED_PUSH="\[\e[01;${COLOR_YELLOW}m\]!\[\e[0m\]"
         fi
         UNTRACKED_FILES=""
-        if [ -n "$(echo $LONG_GIT_STATUS | egrep -ie 'Untracked files:')" ]; then
+        if [ -n "$(echo $LONG_GIT_STATUS | ggrep -iE 'Untracked files:')" ]; then
             UNTRACKED_FILES="\[\e[00;${COLOR_RED}m\]?\[\e[0m\]"
         fi;
         echo -ne "(\[\e[01;${BRANCH_COLOR}m\]${BRANCH}${NEED_PUSH}${UNTRACKED_FILES}\[\e[0m\]\[\e[00;${COLOR_WHITE}m\]\[\e[0m\])"
@@ -186,9 +184,9 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    source /etc/bash_completion
-fi
+#if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+#    source /etc/bash_completion
+#fi
 # file for custom bash completition
 if [ -f ~/.bash_autocomplete ]; then
     source ~/.bash_autocomplete
@@ -199,27 +197,16 @@ if [ -f ~/.bash_functions ]; then
 fi
 # i hate ruby!
 [ -d "$HOME/.rvm" ] && PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
-if [ -f "/usr/local/opt/nvm/nvm.sh" ]; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && source "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-fi
+
+#if [ -f "/usr/local/opt/nvm/nvm.sh" ]; then
+#    export NVM_DIR="$HOME/.nvm"
+#    [ -s "/usr/local/opt/nvm/nvm.sh" ] && source "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+#    [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && source "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+#fi
 
 #source fucking google API keys for chromium
 [ -f ~/.chromium.env ] && source ~/.chromium.env
 
-# MacOSx stuff
-if $(which brew &> /dev/null); then
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        . $(brew --prefix)/etc/bash_completion
-    fi
-    if [ -f $(brew --prefix nvm)/nvm.sh ]; then
-        . $(brew --prefix nvm)/nvm.sh
-    fi
-#    if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-#        . $(brew --prefix)/share/bash-completion/bash_completion
-#    fi
-fi
 #Forward ssh-agent into screen
 if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
     if [ ! -d ~/.ssh ]; then

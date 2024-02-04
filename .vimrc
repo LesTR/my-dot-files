@@ -205,7 +205,7 @@ map <S-T> :tabnew<CR>
 
 
 "colors twilight256
-color dracula
+"color dracula
 let g:solarized_termcolors=256
 "colorscheme solarized
 

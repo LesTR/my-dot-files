@@ -87,7 +87,7 @@ reverseAdiblePing () {
 }
 
 workspace() {
-	WORKSPACE=${WORKSPACE:-"${HOME}/data/workspace"}
+	local WORKSPACE=${WORKSPACE:-"${HOME}/data/workspace"}
 	if [ ! -d "$WORKSPACE" ]; then
 		echo "$WORKSPACE does not exist. Check your \$WORKSPACE variable." >&2
 		return 1
