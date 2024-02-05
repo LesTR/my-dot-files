@@ -6,7 +6,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH="/opt/homebrew/bin/:$PATH"
+#export PATH=$(brew --prefix)/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -77,13 +79,9 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh-agent)
+plugins=(git ssh-agent aws)
 
 source $ZSH/oh-my-zsh.sh
-
-if [ -f $HOME/.zshrc.local ]; then
-   source $HOME/.zshrc.local
-fi
 
 # User configuration
 
@@ -123,23 +121,8 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-# GoEnv
-if type goenv &>/dev/null; then
-  export GOENV_ROOT="$HOME/.goenv"
-  export PATH="$GOENV_ROOT/bin:$PATH"
-  eval "$(goenv init -)"
-  export PATH="$GOROOT/bin:$PATH"
-  export PATH="$PATH:$GOPATH/bin"
-fi
-# Jenv
-if type jenv &>/dev/null; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-fi
+[[ -f ~/.shell_aliases ]] && source ~/.shell_aliases
 
-# Kubernetes
-if type kubectl &>/dev/null; then
-  source <(kubectl completion zsh)
-  alias k='kubectl'
-  alias kctx='kubectx'
+if [ -f $HOME/.zshrc.local ]; then
+   source $HOME/.zshrc.local
 fi

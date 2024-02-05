@@ -1,0 +1,78 @@
+alias bell='echo -en "\a"'
+alias cd..='cd ..'
+alias ..='cd ..'
+
+# some more ls aliases
+alias ls='ls --color=auto'
+alias ll='ls -lh'
+alias la='ls -Al'
+alias l='ls -ahCF'
+
+# some useful aliases
+alias nocomment="grep -Ev '^($|\s*#)'"
+alias se='sudo vim'
+alias vim='vim'
+alias vi='vim'
+alias grep='grep --color=auto'
+
+# some colorized commands
+if $(which grc &> /dev/null)
+then
+	alias colourify="grc -es --colour=auto"
+	alias ping='colourify ping'
+	alias ping6='colourify ping6'
+	alias make='colourify make'
+	alias gcc='colourify gcc'
+	alias g++='colourify g++'
+fi
+
+alias ducks='du -cks * | sort -rn'
+
+if $(which xsel &> /dev/null); then
+	alias pbcopy='xsel -b'
+fi
+
+if ! $(which jshon &> /dev/null); then
+	alias jshon='myjshon'
+else
+	unalias jshon &>/dev/null
+fi
+
+if [[ $OSTYPE == darwin* ]]; then
+	alias flushdns='dscacheutil -flushcache'
+	# Fix for slow MC start - https://unix.stackexchange.com/questions/57439/slow-start-of-midnight-commander
+	alias mc="mc --nosubshell"
+fi
+
+# Kubernetes
+if type kubectl &>/dev/null; then
+	alias kube='kubectl'
+	alias k='kubectl'
+	alias kctx='kubectx'
+fi
+
+# GoEnv
+if type goenv &>/dev/null; then
+  export GOENV_ROOT="$HOME/.goenv"
+  eval "$(goenv init -)"
+fi
+
+# Jenv
+if type jenv &>/dev/null; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
+
+# pyEnv
+if type pyenv &>/dev/null; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
+
+if [ -n "$BASH" ]; then
+	# completion for aliases (use `complete -p command` to resolve completition for command)
+	complete -o default -o nospace -F __start_kubectl kube
+	complete -o default -o nospace -F __start_kubectl k
+	complete -o default -o nospace -F _kube_contexts kctx
+fi

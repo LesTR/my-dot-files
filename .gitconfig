@@ -3,6 +3,8 @@
 	name = Lukas Drbal
 	email = lukas.drbal@gmail.com
 	signingkey = 45DD8AFFD900F361
+[include]
+    path = ~/.gitconfig.local
 [alias]
 	cl = log --graph --pretty=format:'%h%d %s (%an)'
 	ci = commit -S
@@ -70,6 +72,7 @@
 	autocrlf = false
 	ignorecase = false
 	excludesfile = ~/.gitignore_global
+	hooksPath = /usr/local/gitconfig/hooks/
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -77,3 +80,5 @@
 	required = true
 [credential]
 	helper = osxkeychain
+[url "git@github.com:"]
+	insteadOf = https://github.com/
