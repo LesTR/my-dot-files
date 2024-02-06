@@ -122,6 +122,7 @@ if type brew &>/dev/null; then
 fi
 
 [[ -f ~/.shell_aliases ]] && source ~/.shell_aliases
+[[ -f ~/.shell_functions ]] && source ~/.shell_functions
 
 if [ -f $HOME/.zshrc.local ]; then
    source $HOME/.zshrc.local

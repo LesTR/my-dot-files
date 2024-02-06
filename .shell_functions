@@ -130,7 +130,11 @@ sshAuthClean() {
 }
 
 reload_env() {
-	source ~/.bash_profile
+	if [ -n "$BASH" ]; then
+		source ${HOME}/.bash_profile
+	else
+		source ${HOME}/.zshrc
+	fi
 }
 
 function kubectlgetall {
