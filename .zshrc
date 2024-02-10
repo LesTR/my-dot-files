@@ -110,7 +110,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
 
 export GPG_TTY=${TTY}
 
@@ -121,8 +121,8 @@ if type brew &>/dev/null; then
   compinit
 fi
 
-[[ -f ~/.shell_aliases ]] && source ~/.shell_aliases
-[[ -f ~/.shell_functions ]] && source ~/.shell_functions
+[[ -f $HOME/.shell_aliases ]] && source $HOME/.shell_aliases
+[[ -f $HOME/.shell_functions ]] && source $HOME/.shell_functions
 
 if [ -f $HOME/.zshrc.local ]; then
    source $HOME/.zshrc.local

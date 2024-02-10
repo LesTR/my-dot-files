@@ -57,6 +57,10 @@ if type goenv &>/dev/null; then
   eval "$(goenv init -)"
 fi
 
+if type brew &>/dev/null; then
+  alias brew-upgrade='brew update && brew upgrade && brew cleanup'
+fi
+
 # Jenv
 if type jenv &>/dev/null; then
   export PATH="$HOME/.jenv/bin:$PATH"
