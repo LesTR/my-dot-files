@@ -19,7 +19,7 @@ installBash(){
 	_install ".tmux.conf" "tmux"
 }
 installZsh(){
-	_install ".zshrc .shell_functions .shell_aliases" "zsh"
+	_install ".zshrc .shell_functions .shell_aliases .p10k.zsh" "zsh"
 	_install ".screenrc" "screen"
 	_install ".tmux.conf" "tmux"
 }
