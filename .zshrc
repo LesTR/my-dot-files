@@ -81,6 +81,11 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git ssh-agent aws)
 
+if [[ $OSTYPE == darwin* ]]; then
+    # use apple keychain
+    zstyle :omz:plugins:ssh-agent ssh-add-args --apple-load-keychain
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
