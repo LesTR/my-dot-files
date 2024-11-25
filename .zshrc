@@ -119,6 +119,8 @@ source $ZSH/oh-my-zsh.sh
 
 export GPG_TTY=${TTY}
 
+FPATH="${HOME}/.zsh/functions:${FPATH}"
+
 if type brew &>/dev/null; then
   FPATH="$(brew --prefix)/share/zsh-completions:${FPATH}"
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -128,6 +130,9 @@ fi
 
 [[ -f $HOME/.shell_aliases ]] && source $HOME/.shell_aliases
 [[ -f $HOME/.shell_functions ]] && source $HOME/.shell_functions
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 if [ -f $HOME/.zshrc.local ]; then
    source $HOME/.zshrc.local
